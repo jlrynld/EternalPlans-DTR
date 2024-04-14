@@ -82,10 +82,10 @@
             </div>
 
             {{-- Sweet Alert Script  --}}
-            <script>
+            {{-- <script>
                 document.getElementById('submitButton').addEventListener('click', function(event) {
                     event.preventDefault();
-        
+        adsdsasdsadsadasdsa
                     const selectedAction = document.getElementById('selectAction').value;
         
                     const swalWithBootstrapButtons = Swal.mixin({
@@ -117,7 +117,7 @@
                         }
                     });
                 });
-            </script>
+            </script> --}}
             {{-- End Sweet Alert Script --}}
 
             {{-- <script>
