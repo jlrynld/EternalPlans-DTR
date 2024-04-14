@@ -118,7 +118,7 @@
                     });
                 });
             </script>
-            {{-- {{-- End Sweet Alert Script --}}
+            {{-- End Sweet Alert Script --}}
 
             {{-- <script>
                 document.getElementById('selectAction').addEventListener('change', function() {
