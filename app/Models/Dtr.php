@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DtrRecord extends Model
+class Dtr extends Model
 {
     use HasFactory;
 
 
     protected $fillable = [
         'type',
-        'firstname',
-        'lastname',
-        'email',
-        'password',
+        'date',
+        'time',
+        'status',
+        'user_id'
     ];
 
-    protected $table = 'dtr_records';
+    protected $table = 'dtr';
 }

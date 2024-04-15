@@ -5,7 +5,7 @@
             <i class='bx bx-menu' id="menu-box" style="font-size: 30px"></i>
         </li>
         <li class="active">
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('dashboard.index') }}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="link_name">Dashboard</span>
             </a>
@@ -15,7 +15,7 @@
         </li>
 
         <li>
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('dashboard.index') }}">
                 <i class='bx bxs-user'></i>
                 <span class="link_name">Profile</span>
             </a>
@@ -25,7 +25,7 @@
         </li>
 
         <li>
-            <a href="{{ route('dashboard') }}">
+            <a href="{{ route('dashboard.index') }}">
                 <i class='bx bx-history'></i>
                 <span class="link_name">History</span>
             </a>

@@ -24,7 +24,10 @@ class DashboardRequest extends FormRequest
     public function rules()
     {
         return [
-            'action' => 'required|in:timein,timeout,lunchin,lunchout'
+            'action' => 'required|in:1,2,3,4', 
+            'date' => 'required|date_format:Y-m-d',
+            'time'  => 'required|date_format:H:i:s',
+            'status' => 'required|in:ontime,late',
         ];
 
     }

@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');      
             $table->string('date');
             $table->string('type');
-            $table->string('time');             
+            $table->string('time');
+            $table->string('status');              
             $table->timestamps();
 
             $table->index('user_id');

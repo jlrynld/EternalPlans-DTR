@@ -72,79 +72,14 @@
             {{-- ================================================== --}}
             
             <div class="container">
-                <form action="{{ route('dashboard') }}" method="POST" id="dtrForm">
+                <form action="{{ route('dashboard.recordTime') }}" method="POST" id="dtrForm">
                     @csrf
-                    <input type="hidden" name="action" id="selectedAction" value="">
+                    <input type="hidden" name="current_time" id="currentTime" value="">
                     <div class="dropdown d-flex justify-content-center mb-3">
-                        <button style="width: 50%" class="btn btn-success mb-3 mt-3" id="submitButton">Submit</button>
+                        <button style="width: 50%" class="btn btn-success mb-3 mt-3" id="submitButton" onclick="submitForm()">Submit</button>
                     </div>
                 </form>
-            </div>
-
-            {{-- Sweet Alert Script  --}}
-            {{-- <script>
-                document.getElementById('submitButton').addEventListener('click', function(event) {
-                    event.preventDefault();
-        adsdsasdsadsadasdsa
-                    const selectedAction = document.getElementById('selectAction').value;
-        
-                    const swalWithBootstrapButtons = Swal.mixin({
-                        customClass: {
-                            confirmButton: "btn btn-success btn-lg",
-                            cancelButton: "btn btn-danger btn-lg"
-                        },
-                        buttonsStyling: false
-                    });
-        
-                    swalWithBootstrapButtons.fire({
-                        title: "Are you sure?",
-                        text: "You won't be able to revert this!",
-                        icon: "question",
-                        showCancelButton: true,
-                        cancelButtonText: "No",
-                        confirmButtonText: "Yes",
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            // Set the selected action to the hidden input
-                            document.getElementById('selectedAction').value = selectedAction;
-                            // Submit the form
-                            document.getElementById('dtrForm').submit();
-                        } else if (result.dismiss === Swal.DismissReason.cancel) {
-                            swalWithBootstrapButtons.fire({
-                                title: "Cancelled",
-                                icon: "error"
-                            });
-                        }
-                    });
-                });
-            </script> --}}
-            {{-- End Sweet Alert Script --}}
-
-            {{-- <script>
-                document.getElementById('selectAction').addEventListener('change', function() {
-                    var selectedOption = this.value;
-                    var actionText = '';
-                    switch (selectedOption) {
-                        case '1':
-                            actionText = 'Time in';
-                            break;
-                        case '2':
-                            actionText = 'Time out';
-                            break;
-                        case '3':
-                            actionText = 'Lunch in';
-                            break;
-                        case '4':
-                            actionText = 'Lunch out';
-                            break;
-                        default:
-                            actionText = '';
-                    }
-                    document.getElementById('submitButton').value = actionText;
-                    document.getElementById('selectedAction').value = selectedOption;
-                });
-            </script> --}}
-         
+            </div>   
         </div>
     </div>
 
