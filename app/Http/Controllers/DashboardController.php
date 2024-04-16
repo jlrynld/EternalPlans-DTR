@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\DtrRecord;
+use App\Models\Dtr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DashboardRequest;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller{
 
@@ -42,53 +42,54 @@ public function index()
     }
 
     public function recordTime(DashboardRequest $request)
-{
-    try {
-        // Get current date and user
-        $date = now()->toDateString();
-        $userId = auth()->user()->id;
-        $firstName = auth()->user()->firstname;
-        $lastName = auth()->user()->lastname;
+    {
+        DB::beginTransaction();
+        try {
 
-        // Check if a record already exists for the current user and date
-        $existingRecord = DtrRecord::where('user_id', $userId)
-                                    ->where('date', $date)
-                                    ->first();
+            switch ($request->type) {
+                case 'time_out': case 'lunch_out':
+                    $time_in = Dtr::where('user_id', auth()->user()->id)
+                        ->where('date', now()->format('Y-m-d'))
+                        ->where('type', 'time_in')
+                        ->count();
 
-        // If no record exists, create a new one; otherwise, update the existing record
-        if (!$existingRecord) {
-            $dtrRecord = new DtrRecord();
-            $dtrRecord->user_id = $userId;
-            $dtrRecord->date = $date;
-            $dtrRecord->firstname = $firstName;
-            $dtrRecord->lastname = $lastName;
-        } else {
-            $dtrRecord = $existingRecord;
+                    if($time_in == 0) {
+                        DB::rollback();
+                        return redirect()->back()->with('error', 'Please time in first');
+                    }
+                    break;
+                case 'lunch_in':
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+            
+            Dtr::create([
+                'type' => $request->type,
+                'time' => now()->format('H:i:s'),
+                'status' => "on_time",
+                'date' => now()->format('Y-m-d'), 
+                'user_id' => auth()->user()->id,
+            ]);
+            DB::commit();
+            return redirect()->back()->with('success', 'Time recorded successfully');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
         }
+    }   
 
-        // Set values based on the action
-        switch ($request->action) {
-            case 'timein':
-                $dtrRecord->timein = now()->toTimeString();
-                break;
-            case 'timeout':
-                $dtrRecord->timeout = now()->toTimeString();
-                break;
-            case 'lunchin':
-                $dtrRecord->lunchin = now()->toTimeString();
-                break;
-            case 'lunchout':
-                $dtrRecord->lunchout = now()->toTimeString();
-                break;
+    public function sampleFormat() {
+        DB::beginTransaction();
+
+        try {
+            //code...
+            DB::commit();
+            return redirect()->back()->with('success', 'Time recorded successfully');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
         }
-
-        // Save the record
-        $dtrRecord->save();
-
-        return back()->with('success', 'Time recorded successfully.');
-    } catch (\Throwable $th) {
-        return back()->with('error', $th->getMessage());
     }
-}
-
 }

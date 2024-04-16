@@ -8,9 +8,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SampleController;
 use Illuminate\Http\Requests;
 
-Route::get('' , [SignInController::class, 'index'])->name(('signup'));
+Route::get('', [SignInController::class, 'index'])->name('signup');
 
-Route::middleware('guest')->group(function(){
+Route::middleware('guest')->group(function () {
     Route::get('/sign-up', [SignUpController::class, 'index'])->name('sign-up.index');
     Route::post('/sign-up', [SignUpController::class, 'signUp'])->name('sign-up');
 
@@ -18,11 +18,11 @@ Route::middleware('guest')->group(function(){
     Route::post('/sign-in', [SignInController::class, 'signIn'])->name('sign-in');
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::post('/sign-out', [SignOutController::class, 'signOut'])->name('sign-out');
 
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::post('/home', [DashboardController::class, 'recordTime'])->name('dashboard');
+    Route::post('/home', [DashboardController::class, 'recordTime'])->name('dashboard.recordTime');
 
     Route::get('/get-current-time', [DashboardController::class, 'getCurrentTime']);
 
