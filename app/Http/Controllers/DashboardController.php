@@ -7,7 +7,7 @@ use App\Models\Dtr;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DashboardRequest;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller{
 
@@ -41,17 +41,55 @@ public function index()
         ]);
     }
 
-    public function recordTime(Request $request)
+    public function recordTime(DashboardRequest $request)
     {
-    
-        // Store the record in the database
-        Dtr::create([
-            'type' => $request->selectAction,
-            'time' => $request->currentTime,
-            'status' => $request->selectStatus,
-            'date' => now()->toDateString(), 
-            'user_id' => auth()->id(),
-        ]);
-    
-}
+        DB::beginTransaction();
+        try {
+
+            switch ($request->type) {
+                case 'time_out': case 'lunch_out':
+                    $time_in = Dtr::where('user_id', auth()->user()->id)
+                        ->where('date', now()->format('Y-m-d'))
+                        ->where('type', 'time_in')
+                        ->count();
+
+                    if($time_in == 0) {
+                        DB::rollback();
+                        return redirect()->back()->with('error', 'Please time in first');
+                    }
+                    break;
+                case 'lunch_in':
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+            
+            Dtr::create([
+                'type' => $request->type,
+                'time' => now()->format('H:i:s'),
+                'status' => "on_time",
+                'date' => now()->format('Y-m-d'), 
+                'user_id' => auth()->user()->id,
+            ]);
+            DB::commit();
+            return redirect()->back()->with('success', 'Time recorded successfully');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }   
+
+    public function sampleFormat() {
+        DB::beginTransaction();
+
+        try {
+            //code...
+            DB::commit();
+            return redirect()->back()->with('success', 'Time recorded successfully');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
 }

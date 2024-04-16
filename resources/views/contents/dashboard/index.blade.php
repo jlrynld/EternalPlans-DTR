@@ -38,15 +38,16 @@
             </div>
             {{-- ====================================== --}}
 
-
-             <div class="dropdown d-flex justify-content-center mb-3">
-                <select class="form-select form-select-lg w-50" aria-label=".form-select-lg example" id="selectAction">
-                    <option value="1">Time in</option>
-                    <option value="2">Time out</option>
-                    <option value="3">Lunch in</option>
-                    <option value="4">Lunch out</option> 
-                </select>
-            </div> 
+            <form action="{{ route('dashboard.recordTime') }}" method="POST" id="dtrForm">
+                @csrf
+                <div class="dropdown d-flex justify-content-center mb-3">
+                    <select name="type" class="form-select form-select-lg w-50" aria-label=".form-select-lg example" id="selectAction">
+                        <option value="time_in">Time in</option>
+                        <option value="lunch_out">Lunch out</option> 
+                        <option value="lunch_in">Lunch in</option>
+                        <option value="time_out">Time out</option>          
+                    </select>
+               </div> 
 
             {{-- ======================Profile======================== --}}
             <div class="profile-row row" style="width: 50%">
@@ -72,14 +73,13 @@
             {{-- ================================================== --}}
             
             <div class="container">
-                <form action="{{ route('dashboard.recordTime') }}" method="POST" id="dtrForm">
-                    @csrf
                     <input type="hidden" name="current_time" id="currentTime" value="">
                     <div class="dropdown d-flex justify-content-center mb-3">
-                        <button style="width: 50%" class="btn btn-success mb-3 mt-3" id="submitButton" onclick="submitForm()">Submit</button>
-                    </div>
-                </form>
+                        <button style="width: 50%" class="btn btn-success mb-3 mt-3" id="submitButton" type="button">Submit</button>
+                    </div>    
             </div>   
+        </form>
+            @include('components.form_errors')
         </div>
     </div>
 
@@ -90,5 +90,19 @@
         setInterval(() => {
             getCurrentTime()
         },1000)
+
+        @if (session('success'))
+        Swal.fire({
+            title: "Submitted!",
+            text: "{{ session('success') }}",
+            icon: "success"
+        });
+    @elseif (session('error'))
+        Swal.fire({
+            title: "Error!",
+            text: "{{ session('error') }}",
+            icon: "error"
+        });
+    @endif
     </script>
 @endsection
