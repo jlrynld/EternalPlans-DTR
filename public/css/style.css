@@ -763,7 +763,7 @@ select option {
 
 .overtimecard {
     margin-top: 10%;
-    margin-bottom: -300px;
+    margin-bottom: -1000px;
     margin-left: 4%;
 }
 
@@ -771,7 +771,7 @@ select option {
     width: 50%;
     position: relative;
     left: 15px;
-} */
+
 
 /* .Otreasons {
     width: 700px;
