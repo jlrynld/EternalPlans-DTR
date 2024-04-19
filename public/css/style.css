@@ -5,13 +5,14 @@
 /* CSS when button is clicked */
 
 body {
-    font-family: 'Poppins', serif !important;
+    font-family: "Poppins", serif !important;
     color: #444444;
-    background: #18191A !important;
+    background: #18191a !important;
 }
 
 .card {
     background-color: #242526;
+    margin-bottom: -100px;
 }
 
 :root {
@@ -20,14 +21,14 @@ body {
 
 .text-green {
     color: #27af59;
-    font-family: 'Poppins', serif;
+    font-family: "Poppins", serif;
 }
 
 #amount-paid-info-span {
     color: rgb(163, 7, 7);
     text-align: center;
     padding-top: 5px;
-    font-size: smaller
+    font-size: smaller;
 }
 
 .autofill {
@@ -45,10 +46,10 @@ a:hover {
 }
 
 .wallet-containter {
-    background: #E3E3E3;
-     width: 280px;
-     border-radius: 10px;
-     padding: 10px;
+    background: #e3e3e3;
+    width: 280px;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 h1,
@@ -57,7 +58,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Poppins', serif !important;
+    font-family: "Poppins", serif !important;
 }
 
 /* GENERAL */
@@ -152,7 +153,7 @@ footer {
 }
 
 .main-item {
-    background-color: #DEDEDE;
+    background-color: #dedede;
     border-radius: 10px;
     padding: 10px;
     transition: 0.1s;
@@ -165,11 +166,11 @@ footer {
 }
 
 .main-item.green {
-    border-bottom: 3px solid #14592D;
+    border-bottom: 3px solid #14592d;
 }
 
 .main-item.gold {
-    border-bottom: 3px solid #FFD700;
+    border-bottom: 3px solid #ffd700;
 }
 
 .main-item:hover,
@@ -189,13 +190,13 @@ footer {
 
 .item-hovered {
     background-color: rgb(184, 179, 179);
-    background: #14592D;
+    background: #14592d;
     color: white;
     text-decoration: bold;
 }
 
 .sub-item {
-    background: #14592D;
+    background: #14592d;
     color: white;
     border-radius: 10px;
     height: 0;
@@ -236,7 +237,7 @@ footer {
     max-height: 100px;
     min-height: 100px;
     display: block;
-    margin: auto
+    margin: auto;
 }
 
 /* DASHBOARD */
@@ -261,19 +262,24 @@ table tbody td {
 
 /* TABLE */
 
-.badge-success, .badge-active {
+.badge-success,
+.badge-active {
     background-color: white;
-    color: #14592D;
-    border: 2px solid #14592D;
+    color: #14592d;
+    border: 2px solid #14592d;
 }
 
-.badge-secondary, .badge-renewed, .badge-ineligible {
+.badge-secondary,
+.badge-renewed,
+.badge-ineligible {
     background-color: white;
     color: #70747c;
     border: 2px solid #70747c;
 }
 
-.badge-primary, .badge-receipted, .badge-approved {
+.badge-primary,
+.badge-receipted,
+.badge-approved {
     background-color: white;
     color: #0275d8;
     border: 2px solid #0275d8;
@@ -281,26 +287,26 @@ table tbody td {
 
 .badge-pending {
     background-color: white;
-    color: #FF8300;
-    border: 2px solid #FF8300;
+    color: #ff8300;
+    border: 2px solid #ff8300;
 }
 
 .badge-deposited {
     background-color: white;
-    color: #00739D;
-    border: 2px solid #00739D;
+    color: #00739d;
+    border: 2px solid #00739d;
 }
 
 .badge-verified {
     background-color: white;
-    color: #7630EA;
-    border: 2px solid #7630EA;
+    color: #7630ea;
+    border: 2px solid #7630ea;
 }
 
 .badge-finalized {
     background-color: white;
-    color: #14592D;
-    border: 2px solid #14592D;
+    color: #14592d;
+    border: 2px solid #14592d;
 }
 
 .overlay {
@@ -327,14 +333,18 @@ table tbody td {
     text-align: center;
 }
 
-
-.badge-warning, .badge-inactive, .badge-amendment {
+.badge-warning,
+.badge-inactive,
+.badge-amendment {
     background-color: white;
     color: rgb(197, 133, 14);
     border: 2px solid rgb(197, 133, 14);
 }
 
-.badge-danger, .badge-rejected, .badge-cancelled, .badge-expired {
+.badge-danger,
+.badge-rejected,
+.badge-cancelled,
+.badge-expired {
     background-color: white;
     color: #dc3545;
     border: 2px solid #dc3545;
@@ -364,18 +374,18 @@ h6,
     padding-left: 5%;
     padding-top: 0.8%;
     color: #27af59;
-    margin: 0px
+    margin: 0px;
 }
 
 #logo-img-header {
     width: 100%;
     height: auto;
-    margin-top: -7px
+    margin-top: -7px;
 }
 
 #logo-img-header-epi {
     height: auto;
-    margin-top: -7px
+    margin-top: -7px;
 }
 
 .text-right {
@@ -411,11 +421,11 @@ h6,
     margin-left: 5px;
 }
 
-input[type='text'] {
+input[type="text"] {
     cursor: text;
 }
 
-input[type='date'],
+input[type="date"],
 select,
 select option {
     cursor: pointer;
@@ -482,7 +492,8 @@ select option {
     right: 15px;
 }
 
-.notification button, .progress-btn {
+.notification button,
+.progress-btn {
     border: none;
     background-color: #3a7d34;
     color: white;
@@ -500,11 +511,13 @@ select option {
     -o-transition: opacity 0.2s ease-out;
 }
 
-.notification button:hover, .progress-btn:hover {
+.notification button:hover,
+.progress-btn:hover {
     opacity: 0.8;
 }
 
-.notification button>i, .progress-btn>i {
+.notification button > i,
+.progress-btn > i {
     padding: 0;
     margin: 0;
 }
@@ -622,9 +635,9 @@ select option {
 
 /* Define widths for other columns as needed */
 
-
 @media (max-width: 575px) {
-    #logo-img-header, #logo-img-header-epi {
+    #logo-img-header,
+    #logo-img-header-epi {
         display: none;
     }
 }
@@ -653,7 +666,6 @@ select option {
         margin-top: 50%;
     }
 }
-
 
 @media (max-width: 992px) {
     .row {
@@ -685,7 +697,7 @@ select option {
 
 /* ===== Clock Design ===== */
 
-.clock-date-con{
+.clock-date-con {
     width: 10%;
     height: 10vh;
     display: flex;
@@ -694,19 +706,19 @@ select option {
     position: relative;
 }
 
-.date{
+.date {
     font-size: 35px;
     font-weight: 400;
     text-align: center;
     letter-spacing: 1.5px;
 }
 
-.datetime{
+.datetime {
     color: #27af59;
-    font-family: 'Poppins', serif;
+    font-family: "Poppins", serif;
 }
 
-.time{
+.time {
     font-style: 60px;
     font-size: 35px;
     display: flex;
@@ -715,7 +727,7 @@ select option {
     letter-spacing: 3px;
 }
 
-.time span.period{
+.time span.period {
     font-size: 35px;
     font-weight: 350;
     text-transform: uppercase;
@@ -723,26 +735,49 @@ select option {
     padding: 0 5px;
 }
 
-#current-time{
-    color:#27af59
+#current-time {
+    color: #27af59;
 }
 /* ======= */
 
 /* ======= Form Floating for DTR ======= */
 
-#name-span-header{
-    font-family: 'Poppins', serif;
+#name-span-header {
+    font-family: "Poppins", serif;
 }
 
-.profile-row{
+.profile-row {
     align-items: center;
     position: relative;
     left: 27%;
 }
 
-.img-fluid{
-    width: 175px; 
+.img-fluid {
+    width: 175px;
     height: 150px;
     margin-left: 15%;
     border-radius: 2%;
 }
+
+/* ============= Over Time Design ================= */
+
+.overtimecard {
+    margin-top: 10%;
+    margin-bottom: -300px;
+    margin-left: 4%;
+}
+
+/* .Otempname {
+    width: 50%;
+    position: relative;
+    left: 15px;
+} */
+
+/* .Otreasons {
+    width: 700px;
+    height: 10%;
+    padding-top: 5%;
+    position: relative;
+    bottom: 10%;
+    left: 34%;
+} */

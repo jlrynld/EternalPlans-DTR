@@ -43,18 +43,18 @@
                 <div class="dropdown d-flex justify-content-center mb-3">
                     <select name="type" class="form-select form-select-lg w-50" aria-label=".form-select-lg example" id="selectAction">
                         <option value="time_in">Time in</option>
-                        <option value="lunch_out">Lunch out</option> 
+                        <option value="lunch_out">Lunch out</option>
                         <option value="lunch_in">Lunch in</option>
-                        <option value="time_out">Time out</option>          
+                        <option value="time_out">Time out</option>
                     </select>
-               </div> 
+               </div>
 
             {{-- ======================Profile======================== --}}
             <div class="profile-row row" style="width: 50%">
                 <div class="col-6">
                     <img src="css/logo/Defaultpic.png" class="img-fluid"alt="Default Profile Pic">
                 </div>
-                
+
                 <div class="col-6">
                     <div class="input-group m-2" style="width: 94%">
                         <span class="input-group-text">#</span>
@@ -67,17 +67,17 @@
                     <div class="form-floating m-2">
                         <textarea class="form-control" placeholder="Leave a comment here" style="resize: none; id="employeeName" disabled>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</textarea>
                         <label for="employeeName">Employee Name:</label>
-                    </div> 
+                    </div>
                 </div>
             </div>
             {{-- ================================================== --}}
-            
+
             <div class="container">
                     <input type="hidden" name="current_time" id="currentTime" value="">
                     <div class="dropdown d-flex justify-content-center mb-3">
                         <button style="width: 50%" class="btn btn-success mb-3 mt-3" id="submitButton" type="button">Submit</button>
-                    </div>    
-            </div>   
+                    </div>
+            </div>
         </form>
             @include('components.form_errors')
         </div>
