@@ -122,17 +122,17 @@
         @elseif (session('halfdayChecker'))
             Swal.fire({
                 title: "Are you sure you want to time out?",
-                text: "{{ session('halfdayChecker') }}",
+                html: "<div style='text-align: center;'> {{ session('halfdayChecker') }} </div>",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes"
+                confirmButtonText: "Gora mo mamsh"
             }).then((result) => {
                     if (result.isConfirmed) {
                     Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
+                        title: "Submitted!",
+                        text: "{{ session('success') }}",
                         icon: "success"
                     });
             }

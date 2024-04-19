@@ -82,7 +82,7 @@ public function index()
     
                         if ($lunch_in == 0) {
                             DB::rollback();
-                            return redirect()->back()->with('halfdayChecker', 'This will only record for half day');
+                            return redirect()->back()->with('halfdayChecker', 'Half day ka lang mamsh?');
                         }
                     } 
 
@@ -99,7 +99,6 @@ public function index()
                         return redirect()->back()->with('timeinChecker', ' ');
                     }
                 break;
-
                 
             }
             
