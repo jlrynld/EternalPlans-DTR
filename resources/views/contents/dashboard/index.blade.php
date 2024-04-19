@@ -92,17 +92,52 @@
         },1000)
 
         @if (session('success'))
-        Swal.fire({
-            title: "Submitted!",
-            text: "{{ session('success') }}",
-            icon: "success"
-        });
-    @elseif (session('error'))
-        Swal.fire({
-            title: "Error!",
-            text: "{{ session('error') }}",
-            icon: "error"
-        });
+            Swal.fire({
+                title: "Submitted!",
+                text: "{{ session('success') }}",
+                icon: "success"
+            });
+
+        @elseif (session('timelunchoutChecker'))
+            Swal.fire({
+                title: "Error! <br> Please time in first!",
+                text: "{{ session('lunchinChecker') }}",
+                icon: "error"
+            });     
+
+        @elseif (session('timeinChecker'))
+            Swal.fire({
+                title: "Error! <br> You have already timed in",
+                text: "{{ session('lunchinChecker') }}",
+                icon: "warning"
+            });
+
+        @elseif (session('lunchoutChecker'))
+            Swal.fire({
+                title: "Error! <br> You have not lunch out yet!",
+                text: "{{ session('lunchinChecker') }}",
+                icon: "warning"
+            });
+                
+        @elseif (session('halfdayChecker'))
+            Swal.fire({
+                title: "Are you sure you want to time out?",
+                html: "<div style='text-align: center;'> {{ session('halfdayChecker') }} </div>",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Gora mo mamsh"
+            }).then((result) => {
+                    if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Submitted!",
+                        text: "{{ session('success') }}",
+                        icon: "success"
+                    });
+            }
+            });      
+      
     @endif
     </script>
 @endsection

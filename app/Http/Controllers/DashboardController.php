@@ -47,7 +47,9 @@ public function index()
         try {
 
             switch ($request->type) {
-                case 'time_out': case 'lunch_out':
+                case 'time_out': 
+                case 'lunch_out':
+                case 'lunch_in':       
                     $time_in = Dtr::where('user_id', auth()->user()->id)
                         ->where('date', now()->format('Y-m-d'))
                         ->where('type', 'time_in')
@@ -55,14 +57,49 @@ public function index()
 
                     if($time_in == 0) {
                         DB::rollback();
-                        return redirect()->back()->with('error', 'Please time in first');
+                        return redirect()->back()->with('timelunchoutChecker', ' ');                 
                     }
-                    break;
-                case 'lunch_in':
-                    break;
-                default:
-                    # code...
-                    break;
+
+                    if ($request->type == 'lunch_in') {
+                      
+                        $lunch_out = Dtr::where('user_id', auth()->user()->id)
+                            ->where('date', now()->format('Y-m-d'))
+                            ->where('type', 'lunch_out')
+                            ->count();
+    
+                        if ($lunch_out == 0) {
+                            DB::rollback();
+                            return redirect()->back()->with('lunchoutChecker', ' ');
+                        }
+                    }
+
+                    if ($request->type == 'time_out') {
+                      
+                        $lunch_in = Dtr::where('user_id', auth()->user()->id)
+                            ->where('date', now()->format('Y-m-d'))
+                            ->where('type', 'lunch_in')
+                            ->count();
+    
+                        if ($lunch_in == 0) {
+                            DB::rollback();
+                            return redirect()->back()->with('halfdayChecker', 'Half day ka lang mamsh?');
+                        }
+                    } 
+
+                break;
+
+                case 'time_in':
+                    $time_in = Dtr::where('user_id', auth()->user()->id)
+                    ->where('date', now()->format('Y-m-d'))
+                    ->where('type', 'time_in')
+                    ->count();
+
+                    if($time_in == 1) {
+                        DB::rollBack();
+                        return redirect()->back()->with('timeinChecker', ' ');
+                    }
+                break;
+                
             }
             
             Dtr::create([
@@ -74,7 +111,9 @@ public function index()
             ]);
             DB::commit();
             return redirect()->back()->with('success', 'Time recorded successfully');
-        } catch (\Throwable $th) {
+        }
+
+        catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->with('error', $th->getMessage());
         }
