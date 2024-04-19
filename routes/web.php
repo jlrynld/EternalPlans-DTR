@@ -5,6 +5,7 @@ use App\Http\Controllers\SignInController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\SignOutController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\SampleController;
 use Illuminate\Http\Requests;
 
@@ -23,6 +24,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::post('/home', [DashboardController::class, 'recordTime'])->name('dashboard.recordTime');
+
+    Route::get('/overtime', [OvertimeController::class, 'index'])->name('dashboard.overtime');
+    Route::post('/overtime', [OvertimeController::class, 'index'])->name('dashboard.overtime');
 
     Route::get('/get-current-time', [DashboardController::class, 'getCurrentTime']);
 

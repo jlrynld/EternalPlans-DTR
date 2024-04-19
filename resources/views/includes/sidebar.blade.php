@@ -10,7 +10,7 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Dashboard</a></li>
+                <li><a class="link_name" href="{{ route('dashboard.index') }}">Dashboard</a></li>
             </ul>
         </li>
 
@@ -53,15 +53,15 @@
             <div class="icon-link">
                 <a href="#" onclick="openSidebar()">
                     <i class='bx bxs-edit'></i>
-                    <span class="link_name">Data Entry</span>
+                    <span class="link_name">Request</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu" style="font-weight: bold">
-                <li><a class="link_name" href="#">Data Entry</a></li>
-                <li><a href="#">SUB LINK</a></li>
-                <li><a href="#">SUB LINK</a></li>
-                <li><a href="#">SUB LINK</a></li>
+                <li><a class="link_name" href="#">Request</a></li>
+                <li><a href="{{ route('dashboard.overtime') }}">Over Time</a></li>
+                <li><a href="#">Vacation Leave</a></li>
+                <li><a href="#">Sick Leave</a></li>
             </ul>
         </li>
         <li onclick="document.getElementById('signout').submit()">
