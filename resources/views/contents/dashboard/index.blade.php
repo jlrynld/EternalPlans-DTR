@@ -103,7 +103,7 @@
                 title: "Error! <br> Please time in first!",
                 text: "{{ session('lunchinChecker') }}",
                 icon: "error"
-            });     
+            });
 
         @elseif (session('timeinChecker'))
             Swal.fire({
@@ -118,7 +118,7 @@
                 text: "{{ session('lunchinChecker') }}",
                 icon: "warning"
             });
-                
+
         @elseif (session('halfdayChecker'))
             Swal.fire({
                 title: "Are you sure you want to time out?",
@@ -136,8 +136,8 @@
                         icon: "success"
                     });
             }
-            });      
-      
+            });
+
     @endif
     </script>
 @endsection
