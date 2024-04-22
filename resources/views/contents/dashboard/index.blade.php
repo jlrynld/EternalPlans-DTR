@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'TItle of Page / Name of Project')
+@section('title', 'Eternal Plans, Inc.')
 
 @section('contents')
 
@@ -137,7 +137,6 @@
                     });
             }
             });
-
     @endif
     </script>
 @endsection

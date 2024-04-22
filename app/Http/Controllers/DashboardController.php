@@ -9,6 +9,7 @@ use App\Http\Requests\DashboardRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class DashboardController extends Controller{
 
 public function index()
@@ -45,80 +46,54 @@ public function index()
     {
         DB::beginTransaction();
         try {
-
+            $user_id = auth()->user()->id;
+            $date = now()->format('Y-m-d');
+    
             switch ($request->type) {
-                case 'time_out': 
+                case 'time_out':
                 case 'lunch_out':
-                case 'lunch_in':       
-                    $time_in = Dtr::where('user_id', auth()->user()->id)
-                        ->where('date', now()->format('Y-m-d'))
-                        ->where('type', 'time_in')
-                        ->count();
-
-                    if($time_in == 0) {
+                case 'lunch_in':
+                    $time_in_exists = Dtr::where('user_id', $user_id)
+                        ->where('date', $date)
+                        ->whereNotNull('time_in')
+                        ->first();
+    
+                    if (!$time_in_exists) {
                         DB::rollback();
-                        return redirect()->back()->with('timelunchoutChecker', ' ');                 
+                        return redirect()->back()->with('timelunchoutChecker', ' ');
                     }
-
-                    if ($request->type == 'lunch_in') {
-                      
-                        $lunch_out = Dtr::where('user_id', auth()->user()->id)
-                            ->where('date', now()->format('Y-m-d'))
-                            ->where('type', 'lunch_out')
-                            ->count();
+                    break;
     
-                        if ($lunch_out == 0) {
-                            DB::rollback();
-                            return redirect()->back()->with('lunchoutChecker', ' ');
-                        }
-                    }
-
-                    if ($request->type == 'time_out') {
-                      
-                        $lunch_in = Dtr::where('user_id', auth()->user()->id)
-                            ->where('date', now()->format('Y-m-d'))
-                            ->where('type', 'lunch_in')
-                            ->count();
-    
-                        if ($lunch_in == 0) {
-                            DB::rollback();
-                            return redirect()->back()->with('halfdayChecker', 'Half day ka lang mamsh?');
-                        }
-                    } 
-
-                break;
-
                 case 'time_in':
-                    $time_in = Dtr::where('user_id', auth()->user()->id)
-                    ->where('date', now()->format('Y-m-d'))
-                    ->where('type', 'time_in')
-                    ->count();
-
-                    if($time_in == 1) {
-                        DB::rollBack();
+                    $time_in_count = Dtr::where('user_id', $user_id)
+                        ->where('date', $date)
+                        ->whereNotNull('time_in')
+                        ->count();
+    
+                    if ($time_in_count > 0) {
+                        DB::rollback();
                         return redirect()->back()->with('timeinChecker', ' ');
                     }
-                break;
-                
-            }
+                    if ($time_in_count == 0) {
+                        Dtr::create([
+                            'time_in' => now()->format('H:i:s'),                           
+                            'status' => "on_time",
+                            'date' => now()->format('Y-m-d'), 
+                            'user_id' => auth()->user()->id,
+                        ]);
             
-            Dtr::create([
-                'type' => $request->type,
-                'time' => now()->format('H:i:s'),
-                'status' => "on_time",
-                'date' => now()->format('Y-m-d'), 
-                'user_id' => auth()->user()->id,
-            ]);
+                     }
+                    break;
+            }
+
             DB::commit();
             return redirect()->back()->with('success', 'Time recorded successfully');
-        }
-
-        catch (\Throwable $th) {
-            DB::rollBack();
+    
+        } catch (\Throwable $th) {
+            DB::rollback();
             return redirect()->back()->with('error', $th->getMessage());
         }
-    }   
-
+}
     public function sampleFormat() {
         DB::beginTransaction();
 

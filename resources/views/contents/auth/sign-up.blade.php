@@ -26,7 +26,7 @@
                 <div class="form-floating mb-3">
                     <select name="type" class="form-control" id="type" required>
                         <option value="Employee" {{ old('type') == 'Employee' ? "selected":"" }}>Employee</option>
-                        {{-- <option value="Manager" @if(old('type')== 'Manager') selected @endif >Manager</option> --}}
+                        <option value="Manager" @if(old('type')== 'Manager') selected @endif >Manager</option>
                     </select>
                     <label for="type">User Type <span class="text-danger">*</span></label>
                 </div>
