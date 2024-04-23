@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'TItle of Page / Name of Project')
+@section('title', 'Eternal Plans, Inc.')
 
 @section('contents')
 
@@ -98,7 +98,7 @@
                 icon: "success"
             });
 
-        @elseif (session('timelunchoutChecker'))
+        @elseif (session('notimeinChecker'))
             Swal.fire({
                 title: "Error! <br> Please time in first!",
                 text: "{{ session('lunchinChecker') }}",
@@ -137,7 +137,6 @@
                     });
             }
             });
-
     @endif
     </script>
 @endsection

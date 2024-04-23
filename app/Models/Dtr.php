@@ -11,10 +11,13 @@ class Dtr extends Model
 
 
     protected $fillable = [
-        'type',
+        'time_in',
+        'lunch_out',
+        'lunch_in',
+        'time_out',
         'date',
-        'time',
         'status',
+        'total_hours',
         'user_id'
     ];
 

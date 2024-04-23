@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');      
             $table->string('date');
-            $table->string('type');
-            $table->string('time');
-            $table->string('status');              
+            $table->string('time_in');
+            $table->string('lunch_out')->nullable();
+            $table->string('lunch_in')->nullable();
+            $table->string('time_out')->nullable();
+            $table->string('status');
+            $table->string('total_hours')->nullable();   
             $table->timestamps();
 
             $table->index('user_id');
