@@ -10,21 +10,42 @@
             <div class="col-6">
                 <form action="{{ route ('sign-in') }} " method="POST">
                     @csrf
-
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+                
+                <div class="employeeid">     
+                    <h4>I.D</h4>    
+                        <div class="form-floating">
+                            <textarea type="email" class="form-control" id="employeeId" style="resize: none; placeholder="name@example.com" disabled>{{ auth()->user()->id }}</textarea>
+                            <label for="employeeId">Employee ID</label>
+                        </div>
                 </div>
 
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+                <div class="employeename">
+                    <h4>Employee name</h4>
+                        <div class="form-floating m-2">
+                            <textarea class="form-control" placeholder="Leave a comment here" style="resize: none;" id="employeeName" disabled>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</textarea>
+                            <label for="employeeName">Employee Name:</label>
+                        </div>
                 </div>
 
+                <div class="department">
+                    <h4>Department</h4>
+                        <div class="form-floating m-2">
+                             <textarea class="form-control" placeholder="Leave a comment here" style="resize: none;" id="department"></textarea>
+                            <label for="floatingTextarea2">Your Department:</label>
+                        </div>
+                </div>
+
+                <div class="reason">
+                    <h4>Reason</h4>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" style="resize: none;" id="floatingTextarea2"></textarea>
+                            <label for="floatingTextarea2">Reason:</label>
+                        </div>
+                </div>
+            
+            
             </div>
         </div>
-
-
 
 
 
