@@ -768,18 +768,27 @@ select option {
     margin-left: 4%;
 }
 
-.employeeid{
-    width: 21%;
+.otcalendar{
+    color: #27af59;
+    font-family: "Poppins", serif;
+    position: relative;
 }
 
-.employeename{
-    width: 50%;
+.otdate{
+    font-size: 25px;
+    font-weight: 300;
 }
 
-.department{
-    width: 50%;
+
+.overtime-row{
+    font-size: 20px;
+    font-weight: 600px;
+    font-family: "Poppins", serif;
+    color: 27af59;
 }
 
-.reason{
-    width: 50%;
-}
+
+/* .ot-time{
+
+} */
+
