@@ -101,28 +101,56 @@
         @elseif (session('notimeinChecker'))
             Swal.fire({
                 title: "Error! <br> Please time in first!",
-                text: "{{ session('lunchinChecker') }}",
+                text: "{{ session('notimeinChecker') }}",
                 icon: "error"
             });
+
+        @elseif (session('nolunchoutChecker'))
+        Swal.fire({
+            title: "Error! <br> No lunch out yet!",
+            text: "{{ session('nolunchoutChecker') }}",
+            icon: "error"
+        });
 
         @elseif (session('timeinChecker'))
             Swal.fire({
                 title: "Error! <br> You have already timed in",
-                text: "{{ session('lunchinChecker') }}",
+                text: "{{ session('timeinChecker') }}",
                 icon: "warning"
             });
-
+        
         @elseif (session('lunchoutChecker'))
+        Swal.fire({
+            title: "Error! <br> You have already lunch out!",
+            text: "{{ session('lunchoutChecker') }}",
+            icon: "warning"
+        });
+
+        @elseif (session('lunchinChecker'))
             Swal.fire({
-                title: "Error! <br> You have not lunch out yet!",
+                title: "Error! <br> You have already lunch in!",
                 text: "{{ session('lunchinChecker') }}",
                 icon: "warning"
             });
+        
+        @elseif (session('noontimeChecker'))
+        Swal.fire({
+            title: "Error! <br> You can only lunch out between 12:00 PM and 1:00 PM ",
+            text: "{{ session('noontimeChecker') }}",
+            icon: "error"
+        });
 
-        @elseif (session('halfdayChecker'))
+        @elseif (session('timeoutChecker'))
+        Swal.fire({
+            title: "Error! <br> You have already timed out!",
+            text: "{{ session('timeoutChecker') }}",
+            icon: "error"
+        });
+
+        @elseif (session('undertimeChecker'))
             Swal.fire({
                 title: "Are you sure you want to time out?",
-                html: "<div style='text-align: center;'> {{ session('halfdayChecker') }} </div>",
+                html: "<div style='text-align: center;'> This action will update your status to undertime. </div>",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -132,7 +160,7 @@
                     if (result.isConfirmed) {
                     Swal.fire({
                         title: "Submitted!",
-                        text: "{{ session('success') }}",
+                        text: "{{ route('success') }}",
                         icon: "success"
                     });
             }
