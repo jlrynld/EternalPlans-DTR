@@ -98,7 +98,7 @@
                 icon: "success"
             });
 
-        @elseif (session('timelunchoutChecker'))
+        @elseif (session('notimeinChecker'))
             Swal.fire({
                 title: "Error! <br> Please time in first!",
                 text: "{{ session('lunchinChecker') }}",
