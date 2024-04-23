@@ -59,6 +59,7 @@ h4,
 h5,
 h6 {
     font-family: "Poppins", serif !important;
+    color: #27af59;
 }
 
 /* GENERAL */
@@ -767,17 +768,18 @@ select option {
     margin-left: 4%;
 }
 
-/* .Otempname {
+.employeeid{
+    width: 21%;
+}
+
+.employeename{
     width: 50%;
-    position: relative;
-    left: 15px;
+}
 
+.department{
+    width: 50%;
+}
 
-/* .Otreasons {
-    width: 700px;
-    height: 10%;
-    padding-top: 5%;
-    position: relative;
-    bottom: 10%;
-    left: 34%;
-} */
+.reason{
+    width: 50%;
+}
