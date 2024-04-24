@@ -82,64 +82,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.js"></script>
     <script src="{{ asset('js/showPassword.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-    <script src="{{ asset('js/submitForm.js') }}"></script>
 
     @yield('scripts')
-    <script>
-        let arrow = document.querySelectorAll(".arrow");
-        let notificationTable = null;
-
-        for (var i = 0; i < arrow.length; i++) {
-            arrow[i].addEventListener("click", (e) => {
-                let arrowParent = e.target.parentElement.parentElement; // Selecting main parent of arrow
-                arrowParent.classList.toggle("showMenu");
-            });
-
-            // Add event listener to parent element
-            let parentElement = arrow[i].parentElement.parentElement;
-            parentElement.addEventListener("click", (e) => {
-                if (!e.target.classList.contains('arrow')) { // Check if the click didn't happen on the arrow
-                    parentElement.classList.toggle("showMenu");
-                }
-            });
-        }
-
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector("#menu-box");
-        sidebarBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
-
-        var mediaQuery = window.matchMedia('(max-width: 600px)');
-
-        function handleMediaQueryChange(mediaQuery) {
-            var nameElement = document.getElementById('name-span-header');
-
-            if (mediaQuery.matches) {
-                // Change h2 to h6
-                if (nameElement && nameElement.tagName.toLowerCase() === 'h2') {
-                    var h6Element = document.createElement('h6');
-                    h6Element.id = 'name-span-header';
-                    h6Element.innerHTML = nameElement.innerHTML;
-                    nameElement.parentNode.replaceChild(h6Element, nameElement);
-                }
-            } else {
-                // Change h6 to h2
-                if (nameElement && nameElement.tagName.toLowerCase() === 'h6') {
-                    var h2Element = document.createElement('h2');
-                    h2Element.id = 'name-span-header';
-                    h2Element.innerHTML = nameElement.innerHTML;
-                    nameElement.parentNode.replaceChild(h2Element, nameElement);
-                }
-            }
-        }
-
-        mediaQuery.addEventListener('change', function() {
-            handleMediaQueryChange(mediaQuery);
-        });
-
-        handleMediaQueryChange(mediaQuery);
-    </script>
 </body>
 
 </html>

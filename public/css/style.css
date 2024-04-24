@@ -763,32 +763,19 @@ select option {
 /* ============= Over Time Design ================= */
 
 .overtimecard {
-    margin-top: 10%;
+    margin-top: 12%;
     margin-bottom: -1000px;
     margin-left: 4%;
-}
-
-.otcalendar{
-    color: #27af59;
-    font-family: "Poppins", serif;
-    position: relative;
-}
-
-.otdate{
-    font-size: 25px;
-    font-weight: 300;
-}
-
-
-.overtime-row{
     font-size: 20px;
     font-weight: 600px;
     font-family: "Poppins", serif;
     color: 27af59;
 }
 
+.otcalendar{
+    float: right;
+    font-size: 25px;
+    font-weight: 420;
+}
 
-/* .ot-time{
-
-} */
-
+/* ================================================ */

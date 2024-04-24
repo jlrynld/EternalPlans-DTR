@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="form-floating m-2">
-                        <textarea class="form-control" placeholder="Leave a comment here" style="resize: none; id="employeeName" disabled>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</textarea>
+                        <textarea class="form-control" placeholder="Leave a comment here" style="resize: none;" id="employeeName" disabled>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</textarea>
                         <label for="employeeName">Employee Name:</label>
                     </div>
                 </div>
