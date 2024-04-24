@@ -160,18 +160,18 @@ public function index()
                             ->pluck('status')
                             ->first();
 
-                        $lunch_in_exists = Dtr::where('user_id', $user_id)
-                        ->where('date', $date)
-                        ->whereNotNull('lunch_in')
-                        ->count();
+                        $lunch_out_exists = Dtr::where('user_id', $user_id)
+                            ->where('date', $date)
+                            ->whereNotNull('lunch_out')
+                            ->count();
 
                         if($time_out_exists > 0) {
                             DB::rollback();
                             return redirect()->back()->with('timeoutChecker', ' ');
                         }
 
-                        if($lunch_in_exists){
-                            //condition where if user hasn't lunch in and tries to time out it will be considered half day
+                        if($lunch_out_exists == 0 && $status_checker == 'Late'){
+                            return redirect()->back()->with('undertimeChecker', ' ');
                         }
                
                         if($current_time < '17:00' && $status_checker == 'Late') {
@@ -221,8 +221,8 @@ public function index()
                                 'user_id' => auth()->user()->id,
                                 ]);
                             }
+                        break;
                     }
-                    break;
             }
 
             DB::commit();
@@ -233,6 +233,31 @@ public function index()
             return redirect()->back()->with('error', $th->getMessage());
         }
 }
+
+    public function undertimeRecord(DashboardRequest $request) {
+        DB::beginTransaction();
+
+        try {
+            $user_id = auth()->user()->id;
+            $date = now()->format('Y-m-d');
+        
+            Dtr::where('user_id', $user_id)
+                ->where('date', $date)
+                ->whereNull('time_out')
+                ->update([
+                    'time_out' => now()->format('H:i'),
+                    'user_id' => auth()->user()->id,
+                    'status' => 'Late - Half day',
+                ]);
+
+                DB::commit();
+                return redirect()->back()->with('success', 'Time recorded successfully');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
+
     public function sampleFormat() {
         DB::beginTransaction();
 
