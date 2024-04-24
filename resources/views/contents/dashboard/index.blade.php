@@ -79,6 +79,12 @@
                     </div>
             </div>
         </form>
+        
+        <form method="POST" action="{{ route('dashboard.undertimeRecord')}} " id="undertime">
+            @csrf
+
+        </form>
+        
             @include('components.form_errors')
         </div>
     </div>
@@ -164,6 +170,7 @@
                 confirmButtonText: "Proceed"
             }).then((result) => {
                     if (result.isConfirmed) {
+
                     Swal.fire({
                         title: "Submitted!",
                         text: "{{ route('dashboard.undertimeRecord') }}",

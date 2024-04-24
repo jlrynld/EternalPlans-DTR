@@ -48,9 +48,9 @@ public function index()
         try {
             $user_id = auth()->user()->id;
             $date = now()->format('Y-m-d');
-            $current_time = now()->format('H:i');
-            $status = now()->format('H:i') >= '09:00' ? 'Half day' : 
-                     (now()->format('H:i') <= '07:00' ? 'On time' : 'Late');
+            $current_time = now()->format('H:i:s');
+            $status = now()->format('H:i:s') >= '09:00:00' ? 'Half day' : 
+                     (now()->format('H:i:s') <= '07:00:59' ? 'On time' : 'Late');
                    
     
             switch ($request->type) {
@@ -67,7 +67,7 @@ public function index()
                     }
                     if ($time_in_count == 0) {
                         Dtr::updateOrCreate([
-                            'time_in' => now()->format('H:i'),                           
+                            'time_in' => now()->format('H:i:s'),                           
                             'status' => $status,
                             'date' => now()->format('Y-m-d'), 
                             'user_id' => auth()->user()->id,
@@ -106,7 +106,7 @@ public function index()
                                     ->where('date', $date)
                                     ->whereNull('lunch_out')
                                     ->update([
-                                    'lunch_out' => now()->format('H:i'),
+                                    'lunch_out' => now()->format('H:i:s'),
                                     'user_id' => auth()->user()->id,
                                 ]);
                             }                
@@ -142,7 +142,7 @@ public function index()
                                 ->where('date', $date)
                                 ->whereNull('lunch_in')
                                 ->update([
-                                'lunch_in' => now()->format('H:i'),
+                                'lunch_in' => now()->format('H:i:s'),
                                 'user_id' => auth()->user()->id,
                             ]);
                         }       
@@ -180,7 +180,7 @@ public function index()
                                         ->where('date', $date)
                                         ->whereNull('time_out')
                                         ->update([
-                                        'time_out' => now()->format('H:i'),
+                                        'time_out' => now()->format('H:i:s'),
                                         'user_id' => auth()->user()->id,
                                         'status' => 'Late - Undertime',
                                         ]);  
@@ -193,9 +193,9 @@ public function index()
                                         ->where('date', $date)
                                         ->whereNull('time_out')
                                         ->update([
-                                        'time_out' => now()->format('H:i'),
+                                        'time_out' => now()->format('H:i:s'),
                                         'user_id' => auth()->user()->id,
-                                        'status' => 'On time - Undertime',
+                                        'status' => 'Undertime',
                                         ]);  
                                 }
                         }
@@ -206,9 +206,9 @@ public function index()
                                     ->where('date', $date)
                                     ->whereNull('time_out')
                                     ->update([
-                                    'time_out' => now()->format('H:i'),
+                                    'time_out' => now()->format('H:i:s'),
                                     'user_id' => auth()->user()->id,
-                                    'status' => 'Half day - Undertime',
+                                    'status' => 'Half day',
                                     ]);  
                             }
                         }
@@ -217,7 +217,7 @@ public function index()
                                 ->where('date', $date)
                                 ->whereNull('time_out')
                                 ->update([
-                                'time_out' => now()->format('H:i'),
+                                'time_out' => now()->format('H:i:s'),
                                 'user_id' => auth()->user()->id,
                                 ]);
                             }
@@ -238,6 +238,19 @@ public function index()
         DB::beginTransaction();
 
         try {
+
+        $user_id = auth()->user()->id;
+        $date = now()->format('Y-m-d');
+        $current_time = now()->format('H:i:s');
+        $status = now()->format('H:i:s') >= '09:00:00' ? 'Half day' : 
+                 (now()->format('H:i:s') <= '07:00:59' ? 'On time' : 'Late');
+
+                 $status_checker = Dtr::where('user_id', $user_id)
+                 ->where('date', $date)
+                 ->pluck('status')
+                 ->first();
+
+        if($current_time < '17:00' && $status_checker == 'Half day') {
             $user_id = auth()->user()->id;
             $date = now()->format('Y-m-d');
         
@@ -245,13 +258,15 @@ public function index()
                 ->where('date', $date)
                 ->whereNull('time_out')
                 ->update([
-                    'time_out' => now()->format('H:i'),
+                    'time_out' => now()->format('H:i:s'),
                     'user_id' => auth()->user()->id,
-                    'status' => 'Late - Half day',
+                    'status' => 'Half day',
                 ]);
 
                 DB::commit();
                 return redirect()->back()->with('success', 'Time recorded successfully');
+        }
+      
         } catch (\Throwable $th) {
             DB::rollback();
             return redirect()->back()->with('error', $th->getMessage());
