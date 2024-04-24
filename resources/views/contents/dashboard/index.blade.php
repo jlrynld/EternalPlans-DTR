@@ -59,13 +59,13 @@
                     <div class="input-group m-2" style="width: 94%">
                         <span class="input-group-text">#</span>
                         <div class="form-floating">
-                            <textarea type="email" class="form-control" id="employeeId" style="resize: none; placeholder="name@example.com" disabled>{{ auth()->user()->id }}</textarea>
+                            <textarea type="email" class="form-control" id="employeeId" style="resize: none;" placeholder = "name@example.com" disabled>{{ auth()->user()->id }}</textarea>
                             <label for="employeeId">Employee ID</label>
                         </div>
                     </div>
 
                     <div class="form-floating m-2">
-                        <textarea class="form-control" placeholder="Leave a comment here" style="resize: none; id="employeeName" disabled>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</textarea>
+                        <textarea class="form-control" placeholder="Leave a comment here" style="resize: none;" id="employeeName" disabled>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</textarea>
                         <label for="employeeName">Employee Name:</label>
                     </div>
                 </div>
@@ -106,49 +106,49 @@
             });
         @elseif (session('notimeinChecker'))
             Swal.fire({
-                title: "Error! <br> Please time in first!",
+                title: "Please time in first!",
                 text: "{{ session('notimeinChecker') }}",
                 icon: "error"
             });
 
         @elseif (session('nolunchoutChecker'))
         Swal.fire({
-            title: "Error! <br> No lunch out yet!",
+            title: "No lunch out yet!",
             text: "{{ session('nolunchoutChecker') }}",
             icon: "error"
         });
 
         @elseif (session('timeinChecker'))
             Swal.fire({
-                title: "Error! <br> You have already timed in",
+                title: "You have already timed in",
                 text: "{{ session('timeinChecker') }}",
                 icon: "warning"
             });
         
         @elseif (session('lunchoutChecker'))
         Swal.fire({
-            title: "Error! <br> You have already lunch out!",
+            title: "You have already lunch out!",
             text: "{{ session('lunchoutChecker') }}",
             icon: "warning"
         });
 
         @elseif (session('lunchinChecker'))
             Swal.fire({
-                title: "Error! <br> You have already lunch in!",
+                title: "You have already lunch in!",
                 text: "{{ session('lunchinChecker') }}",
                 icon: "warning"
             });
         
         @elseif (session('noontimeChecker'))
         Swal.fire({
-            title: "Error! <br> You can only lunch out between 12:00 PM and 1:00 PM ",
+            title: "You can only lunch out between 12:00 PM and 1:00 PM ",
             text: "{{ session('noontimeChecker') }}",
             icon: "error"
         });
 
         @elseif (session('timeoutChecker'))
         Swal.fire({
-            title: "Error! <br> You have already timed out!",
+            title: "You have already timed out!",
             text: "{{ session('timeoutChecker') }}",
             icon: "error"
         });
@@ -156,17 +156,17 @@
         @elseif (session('undertimeChecker'))
             Swal.fire({
                 title: "Are you sure you want to time out?",
-                html: "<div style='text-align: center;'> This action will update your status to undertime. </div>",
+                html: "<div style='text-align: center;'> You are undertime. </div>",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Gora mo mamsh"
+                confirmButtonText: "Proceed"
             }).then((result) => {
                     if (result.isConfirmed) {
                     Swal.fire({
                         title: "Submitted!",
-                        text: "{{ route('success') }}",
+                        text: "{{ route('dashboard.undertimeRecord') }}",
                         icon: "success"
                     });
             }
