@@ -90,7 +90,7 @@
         setInterval(() => {
             getCurrentTime()
         },1000)
-
+        
         @if (session('success'))
             Swal.fire({
                 title: "Submitted!",
@@ -98,6 +98,12 @@
                 icon: "success"
             });
 
+        @elseif (session('error'))
+            Swal.fire({
+                title: "Error!",
+                text: "{{ session('error') }}",
+                icon: "error"
+            });
         @elseif (session('notimeinChecker'))
             Swal.fire({
                 title: "Error! <br> Please time in first!",
