@@ -23,10 +23,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/sign-out', [SignOutController::class, 'signOut'])->name('sign-out');
 
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard.index');
-    Route::post('/home', [DashboardController::class, 'recordTime'])->name('dashboard.recordTime');
+    Route::post('/home-store', [DashboardController::class, 'recordTime'])->name('dashboard.recordTime');
 
     Route::get('/overtime', [OvertimeController::class, 'index'])->name('dashboard.overtime');
-    Route::post('/overtime', [OvertimeController::class, 'index'])->name('dashboard.overtime');
+    Route::post('/overtime-2', [OvertimeController::class, 'index'])->name('dashboard.overtime');
 
     Route::get('/get-current-time', [DashboardController::class, 'getCurrentTime']);
 

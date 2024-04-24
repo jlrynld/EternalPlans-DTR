@@ -63,7 +63,7 @@ public function index()
     
                     if ($time_in_count > 0) {
                         DB::rollback();
-                        return redirect()->back()->with('timeinChecker', ' ');
+                        return redirect()->route('dashboard.index')->with('timeinChecker', ' ');
                     }
                     if ($time_in_count == 0) {
                         Dtr::updateOrCreate([
@@ -173,7 +173,6 @@ public function index()
                         if($lunch_in_exists){
                             //condition where if user hasn't lunch in and tries to time out it will be considered half day
                         }
-                        
                
                         if($current_time < '17:00' && $status_checker == 'Late') {
                                 if($time_out_exists == 0) {
