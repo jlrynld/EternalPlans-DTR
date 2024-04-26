@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('employee', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('employee_code');
             $table->string('department_code');
             $table->string('address');
             $table->string('firstname');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('civil_status');
             $table->string('position_code');
             $table->string('position_rank');
+            $table->timestamps();
         });
     }
 

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('approved_by_code');
             $table->string('approved_by_remarks')->nullable();
             $table->boolean('status');
+            $table->timestamps();
+
         });
     }
 

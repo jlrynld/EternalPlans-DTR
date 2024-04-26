@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('head_code');
             $table->string('head_remarks')->nullable();
             $table->string('status');
+            $table->timestamps();
         });
     }
 

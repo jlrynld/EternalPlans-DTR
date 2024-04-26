@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('planned_pto', function (Blueprint $table) {
+        Schema::create('holidays', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->timestamp('date');
-            $table->unsignedBigInteger('created_by');
+            $table->string('holiday_type');
+            $table->date('date');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('planned_pto');
+        Schema::dropIfExists('holidays');
     }
 };
