@@ -79,6 +79,11 @@
                     </div>
             </div>
         </form>
+        
+        <form method="POST" action="{{ route('dashboard.undertimeRecord')}} " id="undertime-form">
+            @csrf
+        </form>
+        
             @include('components.form_errors')
         </div>
     </div>
@@ -86,6 +91,7 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('js/submitForm.js') }}"></script>
     <script>
         setInterval(() => {
             getCurrentTime()
@@ -97,66 +103,20 @@
                 text: "{{ session('success') }}",
                 icon: "success"
             });
-
         @elseif (session('error'))
             Swal.fire({
-                title: "Error!",
-                text: "{{ session('error') }}",
+                title: "{{ session('error') }}",
                 icon: "error"
             });
-        @elseif (session('notimeinChecker'))
+        @elseif (session('warning'))
             Swal.fire({
-                title: "Please time in first!",
-                text: "{{ session('notimeinChecker') }}",
-                icon: "error"
-            });
-
-        @elseif (session('nolunchoutChecker'))
-        Swal.fire({
-            title: "No lunch out yet!",
-            text: "{{ session('nolunchoutChecker') }}",
-            icon: "error"
-        });
-
-        @elseif (session('timeinChecker'))
-            Swal.fire({
-                title: "You have already timed in",
-                text: "{{ session('timeinChecker') }}",
+                title: "{{ session('warning') }}",
                 icon: "warning"
             });
-        
-        @elseif (session('lunchoutChecker'))
-        Swal.fire({
-            title: "You have already lunch out!",
-            text: "{{ session('lunchoutChecker') }}",
-            icon: "warning"
-        });
-
-        @elseif (session('lunchinChecker'))
-            Swal.fire({
-                title: "You have already lunch in!",
-                text: "{{ session('lunchinChecker') }}",
-                icon: "warning"
-            });
-        
-        @elseif (session('noontimeChecker'))
-        Swal.fire({
-            title: "You can only lunch out between 12:00 PM and 1:00 PM ",
-            text: "{{ session('noontimeChecker') }}",
-            icon: "error"
-        });
-
-        @elseif (session('timeoutChecker'))
-        Swal.fire({
-            title: "You have already timed out!",
-            text: "{{ session('timeoutChecker') }}",
-            icon: "error"
-        });
-
         @elseif (session('undertimeChecker'))
             Swal.fire({
                 title: "Are you sure you want to time out?",
-                html: "<div style='text-align: center;'> You are undertime. </div>",
+                html: "<div style='text-align: center;'> You are currently undertime. </div>",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -164,13 +124,9 @@
                 confirmButtonText: "Proceed"
             }).then((result) => {
                     if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Submitted!",
-                        text: "{{ route('dashboard.undertimeRecord') }}",
-                        icon: "success"
-                    });
-            }
+                        $("#undertime-form").submit();
+                    }
             });
-    @endif
+        @endif
     </script>
 @endsection

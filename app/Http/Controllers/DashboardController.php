@@ -46,31 +46,31 @@ public function index()
     {
         DB::beginTransaction();
         try {
-            $user_id = auth()->user()->id;
+            $employee_code = auth()->user()->id;
             $date = now()->format('Y-m-d');
-            $current_time = now()->format('H:i');
-            $status = now()->format('H:i') >= '09:00' ? 'Half day' : 
-                     (now()->format('H:i') <= '07:00' ? 'On time' : 'Late');
+            $current_time = now()->format('H:i:s');
+            $status = now()->format('H:i:s') >= '09:00:00' ? 'Half day' : 
+                     (now()->format('H:i:s') <= '07:00:59' ? 'On time' : 'Late');
                    
     
             switch ($request->type) {
                 // ===== time in condition =====
                 case 'time_in':
-                    $time_in_count = Dtr::where('user_id', $user_id)
-                        ->where('date', $date)
-                        ->whereNotNull('time_in')
-                        ->count();
+                    $time_in_count = Dtr::where('employee_code', $employee_code)
+                                        ->where('date', $date)
+                                        ->whereNotNull('time_in')
+                                        ->count();
     
                     if ($time_in_count > 0) {
                         DB::rollback();
-                        return redirect()->route('dashboard.index')->with('timeinChecker', ' ');
+                        return redirect()->route('dashboard.index')->with('error', 'You have already timed in.');
                     }
                     if ($time_in_count == 0) {
                         Dtr::updateOrCreate([
-                            'time_in' => now()->format('H:i'),                           
+                            'time_in' => now()->format('H:i:s'),                           
                             'status' => $status,
                             'date' => now()->format('Y-m-d'), 
-                            'user_id' => auth()->user()->id,
+                            'employee_code' => auth()->user()->id,
                         ]);
                      }
                     break;
@@ -78,147 +78,147 @@ public function index()
                 case 'time_out':
                 case 'lunch_out':
                 case 'lunch_in':
-                    $time_in_exists = Dtr::where('user_id', $user_id)
-                        ->where('date', $date)
-                        ->whereNotNull('time_in')
-                        ->first();
+                    $time_in_exists = Dtr::where('employee_code', $employee_code)
+                                        ->where('date', $date)
+                                        ->whereNotNull('time_in')
+                                        ->first();
     
                     if (!$time_in_exists) {
                         DB::rollback();
-                        return redirect()->back()->with('notimeinChecker', ' ');
+                        return redirect()->back()->with('error', 'Please time in first!');
                     }
 
                     // ====== lunch out condition ======
                     if($request->type == 'lunch_out') {
-                        $lunch_out_exists = Dtr::where('user_id', $user_id)
-                            ->where('date', $date)
-                            ->whereNotNull('lunch_out')
-                            ->count();
+                        $lunch_out_exists = Dtr::where('employee_code', $employee_code)
+                                                ->where('date', $date)
+                                                ->whereNotNull('lunch_out')
+                                                ->count();
 
                         if($lunch_out_exists > 0) {
                             DB::rollback();
-                            return redirect()->back()->with('lunchoutChecker', ' ');
-                        }
+                            return redirect()->back()->with('error', 'You have already lunch out!');
+                        } 
 
                         if($current_time >= '12:00' && $current_time < '13:00') { 
                             if($lunch_out_exists == 0) {
-                                Dtr::where('user_id', $user_id)
+                                Dtr::where('employee_code', $employee_code)
                                     ->where('date', $date)
                                     ->whereNull('lunch_out')
                                     ->update([
                                     'lunch_out' => now()->format('H:i'),
-                                    'user_id' => auth()->user()->id,
+                                    'employee_code' => auth()->user()->id,
                                 ]);
                             }                
                         } else {
-                            return redirect()->back()->with('noontimeChecker', ' ');
+                            return redirect()->back()->with('error', 'You can only time in between 12PM & 1PM');
                         }  
                     }
 
                     // ===== lunch in condition =====
                     if($request->type == 'lunch_in') {
-                        $lunch_in_exists = Dtr::where('user_id', $user_id)
-                            ->where('date', $date)
-                            ->whereNotNull('lunch_in')
-                            ->count();
+                        $lunch_in_exists = Dtr::where('employee_code', $employee_code)
+                                                ->where('date', $date)
+                                                ->whereNotNull('lunch_in')
+                                                ->count();
                         
                         if($lunch_in_exists > 0) {
                             DB::rollback();
-                            return redirect()->back()->with('lunchinChecker', ' ');
+                            return redirect()->back()->with('error', 'You have already lunch in!');
                         }
 
-                        $lunch_out_exists = Dtr::where('user_id', $user_id)
-                            ->where('date', $date)
-                            ->whereNotNull('lunch_out')
-                            ->count();
+                        $lunch_out_exists = Dtr::where('employee_code', $employee_code)
+                                                ->where('date', $date)
+                                                ->whereNotNull('lunch_out')
+                                                ->count();
 
                         if($lunch_out_exists == 0) {
                             DB::rollback();
-                            return redirect()->back()->with('nolunchoutChecker', ' ');
+                            return redirect()->back()->with('error', 'No lunch out yet!');
                         }
 
                         if($lunch_in_exists == 0) {
-                            Dtr::where('user_id', $user_id)
+                            Dtr::where('employee_code', $employee_code)
                                 ->where('date', $date)
                                 ->whereNull('lunch_in')
                                 ->update([
-                                'lunch_in' => now()->format('H:i'),
-                                'user_id' => auth()->user()->id,
+                                'lunch_in' => now()->format('H:i:s'),
+                                'employee_code' => auth()->user()->id,
                             ]);
                         }       
                     }
 
                     // ===== time out condition =====
                     if($request->type == 'time_out') {
-                        $time_out_exists = Dtr::where('user_id', $user_id)
-                            ->where('date', $date)
-                            ->whereNotNull('time_out')
-                            ->count();
+                        $time_out_exists = Dtr::where('employee_code', $employee_code)
+                                            ->where('date', $date)
+                                            ->whereNotNull('time_out')
+                                            ->count();
                         
-                        $status_checker = Dtr::where('user_id', $user_id)
-                            ->where('date', $date)
-                            ->pluck('status')
-                            ->first();
+                        $status_checker = Dtr::where('employee_code', $employee_code)
+                                            ->where('date', $date)
+                                            ->pluck('status')
+                                            ->first();
 
-                        $lunch_out_exists = Dtr::where('user_id', $user_id)
-                            ->where('date', $date)
-                            ->whereNotNull('lunch_out')
-                            ->count();
+                        $lunch_out_exists = Dtr::where('employee_code', $employee_code)
+                                            ->where('date', $date)
+                                            ->whereNotNull('lunch_out')
+                                            ->count();
 
                         if($time_out_exists > 0) {
                             DB::rollback();
-                            return redirect()->back()->with('timeoutChecker', ' ');
+                            return redirect()->back()->with('error', 'You have already timed out!');
                         }
 
-                        if($lunch_out_exists == 0 && $status_checker == 'Late'){
+                        if($current_time < '17:00:00'){
                             return redirect()->back()->with('undertimeChecker', ' ');
                         }
                
-                        if($current_time < '17:00' && $status_checker == 'Late') {
+                        if($current_time < '17:00:00' && $status_checker == 'Late') {
                                 if($time_out_exists == 0) {
-                                    Dtr::where('user_id', $user_id)
+                                    Dtr::where('employee_code', $employee_code)
                                         ->where('date', $date)
                                         ->whereNull('time_out')
                                         ->update([
-                                        'time_out' => now()->format('H:i'),
-                                        'user_id' => auth()->user()->id,
+                                        'time_out' => now()->format('H:i:s'),
+                                        'employee_code' => auth()->user()->id,
                                         'status' => 'Late - Undertime',
                                         ]);  
                                 } 
                         }  
                          
-                        elseif($current_time < '17:00' && $status_checker == 'On time') {
+                        elseif($current_time < '17:00:00' && $status_checker == 'On time') {
                                 if($time_out_exists == 0) {
-                                    Dtr::where('user_id', $user_id)
+                                    Dtr::where('employee_code', $employee_code)
                                         ->where('date', $date)
                                         ->whereNull('time_out')
                                         ->update([
-                                        'time_out' => now()->format('H:i'),
-                                        'user_id' => auth()->user()->id,
-                                        'status' => 'On time - Undertime',
+                                        'time_out' => now()->format('H:i:s'),
+                                        'employee_code' => auth()->user()->id,
+                                        'status' => 'Undertime',
                                         ]);  
                                 }
                         }
 
-                        elseif($current_time < '17:00' && $status_checker == 'Half day') {
+                        elseif($current_time < '17:00:00' && $status_checker == 'Half day') {
                             if($time_out_exists == 0) {
-                                Dtr::where('user_id', $user_id)
+                                Dtr::where('employee_code', $employee_code)
                                     ->where('date', $date)
                                     ->whereNull('time_out')
                                     ->update([
-                                    'time_out' => now()->format('H:i'),
-                                    'user_id' => auth()->user()->id,
-                                    'status' => 'Half day - Undertime',
+                                    'time_out' => now()->format('H:i:s'),
+                                    'employee_code' => auth()->user()->id,
+                                    'status' => 'Half day',
                                     ]);  
                             }
                         }
                         else{                             
-                            Dtr::where('user_id', $user_id)
+                            Dtr::where('employee_code', $employee_code)
                                 ->where('date', $date)
                                 ->whereNull('time_out')
                                 ->update([
-                                'time_out' => now()->format('H:i'),
-                                'user_id' => auth()->user()->id,
+                                'time_out' => now()->format('H:i:s'),
+                                'employee_code' => auth()->user()->id,
                                 ]);
                             }
                         break;
@@ -234,24 +234,40 @@ public function index()
         }
 }
 
-    public function undertimeRecord(DashboardRequest $request) {
+    public function undertimeRecord() {
         DB::beginTransaction();
 
         try {
-            $user_id = auth()->user()->id;
+            $employee_code = auth()->user()->id;
             $date = now()->format('Y-m-d');
-        
-            Dtr::where('user_id', $user_id)
-                ->where('date', $date)
-                ->whereNull('time_out')
-                ->update([
-                    'time_out' => now()->format('H:i'),
-                    'user_id' => auth()->user()->id,
-                    'status' => 'Late - Half day',
-                ]);
+            $current_time = now()->format('H:i:s');
+            $status = now()->format('H:i:s') >= '09:00:00' ? 'Half day' : 
+                    (now()->format('H:i:s') <= '07:00:59' ? 'On time' : 'Late');
 
-                DB::commit();
-                return redirect()->back()->with('success', 'Time recorded successfully');
+                    $status_checker = Dtr::where('employee_code', $employee_code)
+                    ->where('date', $date)
+                    ->pluck('status')
+                    ->first();
+
+            if($current_time < '17:00:00') {
+                $employee_code = auth()->user()->id;
+                $date = now()->format('Y-m-d');
+
+                if($status_checker != 'Half day') 
+                    $status_checker = 'Undertime';
+                
+                Dtr::where('employee_code', $employee_code)
+                    ->where('date', $date)
+                    ->whereNull('time_out')
+                    ->update([
+                        'time_out' => now()->format('H:i:s'),
+                        'employee_code' => auth()->user()->id,
+                        'status' => $status_checker,
+                    ]);
+
+                    DB::commit();
+                    return redirect()->back()->with('success', 'Time recorded successfully');
+            }
         } catch (\Throwable $th) {
             DB::rollback();
             return redirect()->back()->with('error', $th->getMessage());

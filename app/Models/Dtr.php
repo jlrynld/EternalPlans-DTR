@@ -18,7 +18,7 @@ class Dtr extends Model
         'date',
         'status',
         'total_hours',
-        'user_id'
+        'employee_code'
     ];
 
     protected $table = 'dtr';

@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/overtime', [OvertimeController::class, 'index'])->name('dashboard.overtime');
     Route::post('/overtime', [OvertimeController::class, 'index'])->name('dashboard.overtime');
 
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.record');
+    Route::get('/profile-sign-up', [ProfileController::class, 'signUp'])->name('profile.signUp');
+
     Route::get('/get-current-time', [DashboardController::class, 'getCurrentTime']);
 
 });
