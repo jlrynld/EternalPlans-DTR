@@ -4,7 +4,7 @@
         <li id="menuu">
             <i class='bx bx-menu' id="menu-box" style="font-size: 30px"></i>
         </li>
-        <li class="active">
+        <li class="{{ request()->is('home*') ? 'active' : '' }}">
             <a href="{{ route('dashboard.index') }}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="link_name">Dashboard</span>
@@ -14,13 +14,13 @@
             </ul>
         </li>
 
-        <li>
-            <a href="{{ route('dashboard.index') }}">
+        <li class="{{ request()->is('profile*') ? 'active' : '' }}">
+            <a href="{{ route('profile.index') }}">
                 <i class='bx bxs-user'></i>
                 <span class="link_name">Profile</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Profile</a></li>
+                <li><a class="link_name" href="{{ route('profile.index') }}">Profile</a></li>
             </ul>
         </li>
 
