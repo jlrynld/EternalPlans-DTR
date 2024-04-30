@@ -4,7 +4,7 @@
         <li id="menuu">
             <i class='bx bx-menu' id="menu-box" style="font-size: 30px"></i>
         </li>
-        <li class="active">
+        <li class="inactive">
             <a href="{{ route('dashboard.index') }}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="link_name">Dashboard</span>

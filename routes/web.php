@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\SignUpController;
@@ -27,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/undertime-checker', [DashboardController::class, 'undertimeRecord'])->name('dashboard.undertimeRecord');
 
     Route::get('/overtime', [OvertimeController::class, 'index'])->name('dashboard.overtime');
-    Route::post('/overtime', [OvertimeController::class, 'index'])->name('dashboard.overtime');
+    Route::post('/overtime', [OvertimeController::class, 'overtime'])->name('dashboard.overtime');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.record');
     Route::get('/profile-sign-up', [ProfileController::class, 'signUp'])->name('profile.signUp');

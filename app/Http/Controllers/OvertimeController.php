@@ -12,10 +12,6 @@ class OvertimeController extends Controller
     public function index()
     {
         $user = User::select('id', 'firstname', 'email')->where('id', Auth::user()->id)->get();
-        return view('contents.dashboard.overtime')->with('user', $user);
+        return view('contents.request.overtime')->with('user', $user);
     }
-
-
-
-
 }

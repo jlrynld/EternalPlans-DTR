@@ -761,6 +761,12 @@ select option {
 }
 
 /* ============= Over Time Design ================= */
+.ot-row{
+    font-size: 20px;
+    font-weight: 600px;
+    font-family: "Poppins", serif;
+    color: #27af59;
+}
 
 .overtimecard {
     margin-top: 12%;
@@ -777,5 +783,4 @@ select option {
     font-size: 25px;
     font-weight: 420;
 }
-
 /* ================================================ */
