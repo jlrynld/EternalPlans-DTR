@@ -17,10 +17,10 @@
         <li class="{{ request()->is('profile*') ? 'active' : '' }}">
             <a href="{{ route('profile.index') }}">
                 <i class='bx bxs-user'></i>
-                <span class="link_name">Profile</span>
+                <span class="link_name">Employee Profile</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="{{ route('profile.index') }}">Profile</a></li>
+                <li><a class="link_name" href="{{ route('profile.index') }}">Employee Profile</a></li>
             </ul>
         </li>
 

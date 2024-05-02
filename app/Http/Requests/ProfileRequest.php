@@ -29,7 +29,6 @@ class ProfileRequest extends FormRequest
             'firstname' => 'max:255|regex:/^[a-zA-Z\s]+$/',
             'lastname' => 'max:255|regex:/^[a-zA-Z\s]+$/',
             'birthday' => '',
-            'email' => 'email|max:255|unique:users',
             'position' => '|max:255|regex:/^[a-zA-Z\s]+$/',
             'civil_status' => '|in:single, married, divorced, widowed, seperated',
         ];
