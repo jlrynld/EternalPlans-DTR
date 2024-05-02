@@ -40,13 +40,14 @@
 
             <form action="{{ route('dashboard.recordTime') }}" method="POST" id="dtrForm">
                 @csrf
-                <div class="dropdown d-flex justify-content-center mb-3">
-                    <select name="type" class="form-select form-select-lg w-50" aria-label=".form-select-lg example" id="selectAction">
+                <div class="form-floating dropdown d-flex justify-content-center mb-3">
+                    <select name="type" class="form-select w-50" aria-label=".form-select-lg example" id="floatingSelect">
                         <option value="time_in">Time in</option>
                         <option value="lunch_out">Lunch out</option>
                         <option value="lunch_in">Lunch in</option>
                         <option value="time_out">Time out</option>
                     </select>
+                    <label for="floatingSelect" class="form-label d-flex justify-content-center">Select your Inquiry:</label>
                </div>
 
             {{-- ======================Profile======================== --}}

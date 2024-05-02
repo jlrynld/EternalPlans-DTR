@@ -6,21 +6,26 @@
 
     <div class="container mt-5">
         <div class="dtrcard p-3 card shadow">
-            <h3 style="color: #27af59">Profile</h3>
+            <h3 style="color: #27af59">Employee Profile</h3>
             <hr class="m-0 mb-3" style="color: gray">
                 <form action="{{ route('profile.update') }}" method="POST" id="dtrForm">
                 @csrf
                     <div class="row">
+                        <div class="row">
+
+
+                        </div>
+                        
                         <div class="col-6">
                             {{-- ===== Forms ===== --}}
 
-                                <div class="form-floating mb-3 mt-3">
-                                    <input type="text" class="form-control" name="employee_code" id="employee_code" placeholder="employee_code" value="{{ auth()->user()->id }}" >
-                                        onblur="removeExtraSpaces(this)">
-                                        <label for="emloyeecode">Employee ID</label>
+                            <div class="input-group">
+                                <span class="input-group-text">#</span>
+                                <div class="form-floating">
+                                    <textarea type="email" class="form-control" id="employeeId" style="resize: none;" placeholder = "name@example.com" disabled>{{ auth()->user()->id }}</textarea>
+                                    <label for="employeeId">Employee ID</label>
                                 </div>
-                                
-
+                            </div>
 
                                 <div class="form-floating mb-3 mt-3">
                                     <input type="text" class="form-control" name="firstname" id="firstname" placeholder="firstname" value="{{ auth()->user()->firstname }}" onkeypress="return onlyLettersAndSpaces(event)"onpaste="handlePaste(event)"
@@ -35,15 +40,23 @@
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="email" value="{{ auth()->user()->email }}"onpaste="handlePaste(event)"
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="email" value="{{ auth()->user()->email }}" disabled onpaste="handlePaste(event)"
                                         onblur="removeExtraSpaces(this)">
                                         <label for="email">Email</label>
                                 </div>
-
                                 
                             {{-- ============ --}}
                         </div>  
+
                             <div class="col-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">#</span>
+                                    <div class="form-floating">
+                                        <textarea type="email" class="form-control" id="employeeId" style="resize: none;" placeholder = "name@example.com" disabled>EPIOJT</textarea>
+                                        <label for="employeeId">Department Code</label>
+                                    </div>
+                                </div>
+
                                 <div class="form-floating mb-3 mt-3">
                                     <input type="text" class="form-control" name="address" id="address" placeholder="address" value="{{ auth()->user()->address }}" onpaste="handlePaste(event)"
                                         onblur="removeExtraSpaces(this)">
@@ -66,23 +79,23 @@
 
                             <div class="col-3"></div>
 
-                            <div class="dropdown d-flex justify-content-center mt-3 w-50">
-                                <select name="type" class="form-select form-select-lg " aria-label=".form-select-lg example" id="selectAction" value="{{ auth()->user()->type }}">
-                                    <option value="disabled selected">Select Civil Status</option>
+                            <div class="form-floating mt-3 w-50">
+                                <select name="type" class="form-select form-select-lg" aria-label=".form-select-lg example" id="selectAction" value="{{ auth()->user()->type }}">
+                                    <option value="" style="display: none">Select Civil Status</option>
                                     <option value="single">Single</option>
                                     <option value="married">Married</option>
                                     <option value="widowed">Widowed</option>
                                     <option value="divorced">Divorced</option>
                                 </select>
+                                <label for="selectAction" class="d-flex justify-content-left">Civiasdasdl Status</label>
                            </div>
-
 
                             <div class="container">
                                 <input type="hidden" name="current_time" id="currentTime" value="">
                                     <div class="dropdown d-flex justify-content-center mb-3">
-                                        <button style="width: 25%" class="btn btn-success mb-3 mt-3" id="submitButton" type="button">Submit</button>
+                                        <button style="width: 25%" class="btn btn-success mb-3 mt-3" id="submitButton" type="button">Update</button>
                                     </div>
-                        </div>
+                            </div>
                     </div>
                 </form>     
             </div>
