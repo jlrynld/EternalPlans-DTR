@@ -4,7 +4,9 @@
         <li id="menuu">
             <i class='bx bx-menu' id="menu-box" style="font-size: 30px"></i>
         </li>
+
         <li class="{{ request()->is('home*') ? 'active' : '' }}">
+
             <a href="{{ route('dashboard.index') }}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="link_name">Dashboard</span>
@@ -58,8 +60,8 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu" style="font-weight: bold">
-                <li><a class="link_name" href="#">Request</a></li>
-                <li><a href="{{ route('dashboard.overtime') }}">Over Time</a></li>
+                <li><a class="link_name" href="{{ route('request.index') }}">Request</a></li>
+                <li><a href="{{ route('request.index') }}">Over Time</a></li>
                 <li><a href="#">Vacation Leave</a></li>
                 <li><a href="#">Sick Leave</a></li>
             </ul>
