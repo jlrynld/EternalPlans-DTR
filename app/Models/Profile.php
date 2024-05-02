@@ -21,6 +21,6 @@ class Profile extends Model
         'position_rank'
     ];
 
-        protected $table = 'employee';
+    protected $table = 'employee';
 
 }

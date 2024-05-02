@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('overtime_request', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('employee_code');
+            $table->string('from_time');
+            $table->string('to_time');
+            $table->timestamp('date');
             $table->string('nature_of_work');
             $table->string('remarks')->nullable();
             $table->string('recommended_by_code');
