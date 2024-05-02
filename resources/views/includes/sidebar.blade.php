@@ -51,7 +51,7 @@
                 <li><a href="#">SUB LINK</a></li>
             </ul>
         </li> --}}
-        <li>
+        <li class="{{ request()->is('request*') ? 'active' : '' }}">
             <div class="icon-link">
                 <a href="#" onclick="openSidebar()">
                     <i class='bx bxs-edit'></i>
@@ -59,8 +59,8 @@
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
-            <ul class="sub-menu" style="font-weight: bold">
-                <li><a class="link_name" href="{{ route('request.index') }}">Request</a></li>
+            <ul class="sub-menu active" style="font-weight: bold">
+                <li><a class="link_name" href="#">Request</a></li>
                 <li><a href="{{ route('request.index') }}">Over Time</a></li>
                 <li><a href="#">Vacation Leave</a></li>
                 <li><a href="#">Sick Leave</a></li>
