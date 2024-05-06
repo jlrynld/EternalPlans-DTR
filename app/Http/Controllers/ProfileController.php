@@ -27,6 +27,7 @@ class ProfileController extends Controller {
                         'lastname' => $request->lastname,
                         'address' => $request->address,
                         'birthday' => $request->birthday,
+                        'contact_num' => $request->contact_num,
                         'position' => $request->position,
                         'civil_status' => 'single',
                     ]);
@@ -38,6 +39,7 @@ class ProfileController extends Controller {
                         'lastname' => $request->lastname,
                         'address' => $request->address,
                         'birthday' => $request->birthday,
+                        'contact_num' => $request->contact_num,
                         'position' => $request->position,
                         'civil_status' => 'married',
                     ]);
@@ -49,6 +51,7 @@ class ProfileController extends Controller {
                         'lastname' => $request->lastname,
                         'address' => $request->address,
                         'birthday' => $request->birthday,
+                        'contact_num' => $request->contact_num,
                         'position' => $request->position,
                         'civil_status' => 'widowed',
                     ]);
@@ -60,6 +63,7 @@ class ProfileController extends Controller {
                         'lastname' => $request->lastname,
                         'address' => $request->address,
                         'birthday' => $request->birthday,
+                        'contact_num' => $request->contact_num,
                         'position' => $request->position,
                         'civil_status' => 'divorced',
                     ]);

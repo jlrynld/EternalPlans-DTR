@@ -15,6 +15,7 @@ class Profile extends Model
         'firstname',
         'lastname',
         'birthday',
+        'contact_num',
         'position',
         'civil_status',
         'position_code',

@@ -29,7 +29,9 @@ class ProfileRequest extends FormRequest
             'lastname' => 'max:255|regex:/^[a-zA-Z\s]+$/',
             'address' => 'max:255',
             'birthday' => 'date',
+            'contact_num' => 'max:11|regex:/^[0-9]+$/',
             'position' => 'max:255',
+            'civil_status' => 'required|in:single,married,widowed,divorced',
         ];
     }
 }
