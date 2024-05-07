@@ -40,7 +40,7 @@
                                     </div>
 
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" name="contact_num" id="contact_num" placeholder="contact_num" value="09{{ old('contact_num' , auth()->user()->contact_num) }}"onkeypress="return onlyNumbers(event)" onpaste="handlePaste(event)"
+                                        <input type="text" class="form-control" name="contact_num" id="contact_num" placeholder="contact_num" value="{{ old('contact_num' , auth()->user()->contact_num) }}"onkeypress="return onlyNumbers(event)" onpaste="handlePaste(event)"
                                             onblur="removeExtraSpaces(this)">
                                             <label for="contact_num">Contact Number</label>
                                     </div>

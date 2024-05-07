@@ -20,56 +20,67 @@ class ProfileController extends Controller {
         DB::beginTransaction();
           try {
 
-            switch ($request->civil_status) {
-                case 'single':
-                    Profile::updateOrCreate([
-                        'firstname' => $request->firstname,
-                        'lastname' => $request->lastname,
-                        'address' => $request->address,
-                        'birthday' => $request->birthday,
-                        'contact_num' => $request->contact_num,
-                        'position' => $request->position,
-                        'civil_status' => 'single',
-                    ]);
-                    break;
-                
-                case 'married':
-                    Profile::updateOrCreate([
-                        'firstname' => $request->firstname,
-                        'lastname' => $request->lastname,
-                        'address' => $request->address,
-                        'birthday' => $request->birthday,
-                        'contact_num' => $request->contact_num,
-                        'position' => $request->position,
-                        'civil_status' => 'married',
-                    ]);
-                    break;
+            $firstname = auth()->user()->id;
 
-                case 'widowed':
-                    Profile::updateOrCreate([
-                        'firstname' => $request->firstname,
-                        'lastname' => $request->lastname,
-                        'address' => $request->address,
-                        'birthday' => $request->birthday,
-                        'contact_num' => $request->contact_num,
-                        'position' => $request->position,
-                        'civil_status' => 'widowed',
-                    ]);
-                    break;
+            Profile::updateOrCreate([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'address' => $request->address,
+                'birthday' => $request->birthday,
+                'contact_num' => $request->contact_num,
+                'position' => $request->position,
+                'civil_status' => $request->civil_status,
+            ]);
 
-                case 'divorced':
-                    Profile::updateOrCreate([
-                        'firstname' => $request->firstname,
-                        'lastname' => $request->lastname,
-                        'address' => $request->address,
-                        'birthday' => $request->birthday,
-                        'contact_num' => $request->contact_num,
-                        'position' => $request->position,
-                        'civil_status' => 'divorced',
-                    ]);
-                    break;
+            // switch ($request->civil_status) {
+            //     case 'single':
+            //         Profile::updateOrCreate([
+            //             'firstname' => $request->firstname,
+            //             'lastname' => $request->lastname,
+            //             'address' => $request->address,
+            //             'birthday' => $request->birthday,
+            //             'contact_num' => $request->contact_num,
+            //             'position' => $request->position,
+            //             'civil_status' => 'single',
+            //         ]);
+            //         break;
                 
-            }
+            //     case 'married':
+            //         Profile::updateOrCreate([
+            //             'firstname' => $request->firstname,
+            //             'lastname' => $request->lastname,
+            //             'address' => $request->address,
+            //             'birthday' => $request->birthday,
+            //             'contact_num' => $request->contact_num,
+            //             'position' => $request->position,
+            //             'civil_status' => 'married',
+            //         ]);
+            //         break;
+
+            //     case 'widowed':
+            //         Profile::updateOrCreate([
+            //             'firstname' => $request->firstname,
+            //             'lastname' => $request->lastname,
+            //             'address' => $request->address,
+            //             'birthday' => $request->birthday,
+            //             'contact_num' => $request->contact_num,
+            //             'position' => $request->position,
+            //             'civil_status' => 'widowed',
+            //         ]);
+            //         break;
+
+            //     case 'divorced':
+            //         Profile::updateOrCreate([
+            //             'firstname' => $request->firstname,
+            //             'lastname' => $request->lastname,
+            //             'address' => $request->address,
+            //             'birthday' => $request->birthday,
+            //             'contact_num' => $request->contact_num,
+            //             'position' => $request->position,
+            //             'civil_status' => 'divorced',
+            //         ]);
+            //         break;
+            // }
                
                 DB::commit();
                 return redirect()->route('profile.index')->with('success','Your profile has been updated!');
