@@ -13,5 +13,21 @@ class Overtimeform extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['dateforot', 'from_time', 'to_time', 'nature_of_work'];
+    protected $table = "overtime_request";
+
+    protected $fillable = [
+        'employee_code',
+        'date_of_ot',
+        'from_time',
+        'to_time',
+        'nature_of_work',
+        'status',
+        'remarks',
+        'recommended_by_code',
+        'recommended_by_remarks',
+        'approved_by_code',
+        'approved_by_remarks',
+
+    ];
 }
+

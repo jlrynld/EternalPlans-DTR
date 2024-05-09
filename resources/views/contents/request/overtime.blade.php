@@ -22,45 +22,65 @@
                 <div class="container">
                 <div class="ot-row row">
                     <div class="col-3"></div>
-                    <div class="col-6">
-                        <form action="{{ route ('sign-in') }} " method="POST">
-                        @csrf
-                        
-                        <div class="row mb-2">
-                            <div class="col-md-6 gap-1">
-                                <label for="dateforot">Date Of Over Time:</label>
-                                <input class="form-control" type="date" id="dateforot" name="dateforot">
-                            </div>
-                        </div>
-    
-                        <div class="row mb-2">
-                            <div class="col-md-6 gap-1">
-                                <label for="from-time">From Time:</label>
-                                <input class="form-control" type="time" id="from-time" name="from-time">
-                            </div>
-                        
-                            <div class="col-md-6 gap-1">
-                                <label for="to-time">To Time:</label>
-                                <input class="form-control" type="time" id="to-time" name="to-time">
-                            </div>
-                        </div>
-    
-                            <div class="row mb-2">
-                                <div class="col-12">
-                                    <label for="nature-work">Nature Of Work:</label>
-                                    <textarea type="text" class="form-control" style="resize: none" id="nature-work"></textarea>
-                                    <button style="width: 100%" class="btn btn-success mb-3 mt-3" id="#" type="button">Submit</button>
+                        <div class="col-6">
+                            <form action="{{ route('overtime.store') }}"  method="POST">
+                                @csrf
+
+                                <div class="row mb-2">
+                                    <div class="col-md-6 gap-1">
+                                        <label for="dateforot">Date Of Over Time:</label>
+                                        <input class="form-control" type="date" id="date" name="date_of_ot" value="{{ now()->format('Y-m-d') }}">
+                                    </div>
                                 </div>
-                            </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-6 gap-1">
+                                        <label for="from-time">From Time:</label>
+                                        <input class="form-control" type="time" id="from-time" name="from_time">
+                                    </div>
+
+                                    <div class="col-md-6 gap-1">
+                                        <label for="to-time">To Time:</label>
+                                        <input class="form-control" type="time" id="to-time" name="to_time">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-12">
+                                        <label for="nature-work">Nature Of Work:</label>
+                                        <textarea type="text" class="form-control" style="resize: none" id="nature_of_work" name="nature_of_work"></textarea>
+                                        <button style="width: 100%" class="btn btn-success mb-3 mt-3" id="btn-submit" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                                @include('components.form_errors')
+                            </form>
                         </div>
                     </div>
-                
+
                 </div>
-    
+
             </div>
-            
+
         </div>
-    
+
     </div>
-    
+
+@endsection
+
+@section('scripts')
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: "Submitted!",
+                text: "{{ session('success') }}",
+                icon: "success"
+            });
+        @elseif (session('error'))
+            Swal.fire({
+                title: "{{ session('error') }}",
+                icon: "error"
+            });
+        @endif
+    </script>
+
 @endsection

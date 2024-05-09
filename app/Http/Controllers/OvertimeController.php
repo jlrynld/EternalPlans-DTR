@@ -9,6 +9,7 @@ use App\Http\Requests\OvertimeRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Overtimeform;
 
 class OvertimeController extends Controller
 {
@@ -19,7 +20,25 @@ class OvertimeController extends Controller
 
     }
 
+    public function store(OvertimeRequest $request){
+        DB::beginTransaction();
+        try {
+            Overtimeform::create([
+                'employee_code'=> Auth::user()->id,
+                'date_of_ot' => $request->date_of_ot,
+                'from_time' => $request->from_time,
+                'to_time' => $request->to_time,
+                'nature_of_work' => $request->nature_of_work,
+                'status' => 'Pending',
+            ]);
 
+            DB::commit();
+            return redirect()->route('dashboard.index')->with('success', 'Overtime request submitted.');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
 
 }
 
