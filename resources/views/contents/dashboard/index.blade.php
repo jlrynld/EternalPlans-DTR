@@ -10,10 +10,10 @@
                 Daily Time Record
 
                 {{-- ===== Back Button ===== --}}
-                {{-- <a class="h4" href="{{ route('dashboard') }}" style="float:right;">
+                <a class="h4" href="{{ route('dashboard.index') }}" style="float:right;">
                     <i class="far fa-arrow-alt-circle-left"></i>
-                        <span style="font-family: 'Poppins', serif;"> Back </span>
-                </a> --}}
+                    <span style="font-family: 'Poppins', serif;"> Back </span>
+                </a> 
 
             </h3>
 
@@ -40,16 +40,17 @@
 
             <form action="{{ route('dashboard.recordTime') }}" method="POST" id="dtrForm">
                 @csrf
-                <div class="form-floating dropdown d-flex justify-content-center mb-3">
-                    <select name="type" class="form-select w-50" aria-label=".form-select-lg example" id="floatingSelect">
-                        <option value="time_in">Time in</option>
-                        <option value="lunch_out">Lunch out</option>
-                        <option value="lunch_in">Lunch in</option>
-                        <option value="time_out">Time out</option>
-                    </select>
-                    <label for="floatingSelect" class="form-label d-flex justify-content-center">Select your Inquiry:</label>
-               </div>
-
+                    <div class="form-floating d-flex justify-content-center mb-3 w-50 mx-auto"> 
+                        <select name="type" class="form-select" aria-label=".form-select-lg example" id="floatingSelect">
+                            {{-- <option value="" style="display: none"> </option> --}}
+                            <option value="time_in">Time in</option>
+                            <option value="lunch_out">Lunch out</option>
+                            <option value="lunch_in">Lunch in</option>
+                            <option value="time_out">Time out</option>
+                        </select>
+                        <label for="floatingSelect" class="form-label">Select your Inquiry:</label>
+                    </div>
+                       
             {{-- ======================Profile======================== --}}
             <div class="profile-row row" style="width: 50%">
                 <div class="col-6">

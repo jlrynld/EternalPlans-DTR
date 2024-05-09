@@ -6,6 +6,7 @@ use App\Http\Controllers\SignOutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UpdateProfileController;
 use App\Http\Controllers\SampleController;
 use Illuminate\Http\Requests;
 
@@ -30,7 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/request-overtime-submit', [OvertimeController::class, 'overtime'])->name('request.overtime');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::post('/profile-sign-up', [ProfileController::class, 'signUp'])->name('profile.update');
+
+    Route::get('/profile-update', [UpdateProfileController::class, 'index'])->name('profile.update-employee');
+    Route::post('/profile-sign-up', [UpdateProfileController::class, 'signUp'])->name('profile.signUp');
 
     Route::get('/get-current-time', [DashboardController::class, 'getCurrentTime']);
 

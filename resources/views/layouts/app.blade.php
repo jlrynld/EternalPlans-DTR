@@ -82,6 +82,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.4/dist/sweetalert2.js"></script>
     <script src="{{ asset('js/showPassword.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/validations.js') }}"></script>
+
 
     @yield('scripts')
 </body>

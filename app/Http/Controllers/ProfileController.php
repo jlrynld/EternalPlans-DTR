@@ -16,66 +16,6 @@ class ProfileController extends Controller {
         return view('contents.profile.index')->with('user', $user);
     }
 
-    public function signUp(ProfileRequest $request){
-        DB::beginTransaction();
-          try {
-
-            switch ($request->civil_status) {
-                case 'single':
-                    Profile::updateOrCreate([
-                        'firstname' => $request->firstname,
-                        'lastname' => $request->lastname,
-                        'address' => $request->address,
-                        'birthday' => $request->birthday,
-                        'position' => $request->position,
-                        'civil_status' => 'single',
-                    ]);
-                    break;
-                
-                case 'married':
-                    Profile::updateOrCreate([
-                        'firstname' => $request->firstname,
-                        'lastname' => $request->lastname,
-                        'address' => $request->address,
-                        'birthday' => $request->birthday,
-                        'position' => $request->position,
-                        'civil_status' => 'married',
-                    ]);
-                    break;
-
-                case 'widowed':
-                    Profile::updateOrCreate([
-                        'firstname' => $request->firstname,
-                        'lastname' => $request->lastname,
-                        'address' => $request->address,
-                        'birthday' => $request->birthday,
-                        'position' => $request->position,
-                        'civil_status' => 'widowed',
-                    ]);
-                    break;
-
-                case 'divorced':
-                    Profile::updateOrCreate([
-                        'firstname' => $request->firstname,
-                        'lastname' => $request->lastname,
-                        'address' => $request->address,
-                        'birthday' => $request->birthday,
-                        'position' => $request->position,
-                        'civil_status' => 'divorced',
-                    ]);
-                    break;
-                
-            }
-               
-                DB::commit();
-                return redirect()->route('profile.index')->with('success','Your profile has been updated!');
-            } catch (\Throwable $th) {
-                return back()->with('error', $th->getMessage());
-            }
-}
-
-
-
 }
 
 

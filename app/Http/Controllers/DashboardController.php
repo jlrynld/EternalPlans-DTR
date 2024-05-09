@@ -111,7 +111,7 @@ public function index()
                                 ]);
                             }                
                         } else {
-                            return redirect()->back()->with('error', 'You can only time in between 12PM & 1PM');
+                            return redirect()->back()->with('error', 'You can only lunch out between 12PM & 1PM');
                         }  
                     }
 

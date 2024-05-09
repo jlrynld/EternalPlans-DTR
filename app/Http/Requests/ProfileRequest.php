@@ -25,12 +25,14 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'address' => '|max:255',
             'firstname' => 'max:255|regex:/^[a-zA-Z\s]+$/',
+            'middlename' => 'max:255|regex:/^[a-zA-Z\s]+$/',
             'lastname' => 'max:255|regex:/^[a-zA-Z\s]+$/',
-            'birthday' => '',
-            'position' => '|max:255|regex:/^[a-zA-Z\s]+$/',
-            'civil_status' => '|in:single, married, divorced, widowed, seperated',
+            'address' => 'max:255',
+            'birthday' => 'date',
+            'contact_num' => 'max:255|regex:/^[0-9]+$/',
+            'position' => 'max:255',
+            'civil_status' => 'required|in:single,married,widowed,divorced',
         ];
     }
 }

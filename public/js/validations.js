@@ -12,6 +12,15 @@ function onlyLettersAndSpaces(event) {
     }
 }
 
+function onlyNumbers(event) {
+    var charCode = event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+        event.preventDefault();
+        return false;
+    }
+    return true;
+}
+
 function removeExtraSpaces(input) {
     var inputField = input;
     inputField.value = inputField.value.trim().replace(/\s{2,}/g, ' '); // Replace two or more spaces with one
