@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('dtr', function (Blueprint $table) {
             $table->id();
-            $table->string('employee_code');
-            $table->timestamp('date');
+            $table->bigInteger('employee_code');
+            $table->date('date');
             $table->time('time_in');
             $table->time('lunch_out')->nullable();
             $table->time('lunch_in')->nullable();

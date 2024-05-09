@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('type_code');
             $table->time('from_time');
             $table->time('to_time');
-            $table->timestamp('date');
+            $table->date('date');
             $table->string('reason');
             $table->string('supervisor_code');
             $table->string('supervisor_remarks')->nullable();

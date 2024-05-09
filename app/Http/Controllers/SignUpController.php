@@ -13,7 +13,22 @@ class SignUpController extends Controller {
 
     public function signUp(SignUpRequest $request){
           try {
+                // Get the maximum existing employee code
+                $maxEmployee = User::max('employee_code');
+
+                // If there are no existing employees, start from "EPI001"
+                if ($maxEmployee === null) {
+                    $newEmployeeCode = 'EPI001';
+                } else {
+                    // Extract the numeric part and increment it
+                    $numericPart = intval(substr($maxEmployee, 3)) + 1;
+
+                    // Format the new employee code
+                    $newEmployeeCode = 'EPI' . str_pad($numericPart, 3, '0', STR_PAD_LEFT);
+                }
+
                 User::create([
+                    'employee_code' => $newEmployeeCode,
                     'type' => $request->type,
                     'firstname' => $request->firstname,
                     'lastname' => $request->lastname,

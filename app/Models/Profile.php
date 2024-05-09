@@ -13,6 +13,7 @@ class Profile extends Model
         'department_code',
         'address',
         'firstname',
+        'middlename',
         'lastname',
         'birthday',
         'contact_num',

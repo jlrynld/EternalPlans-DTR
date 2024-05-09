@@ -26,6 +26,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'firstname' => 'max:255|regex:/^[a-zA-Z\s]+$/',
+            'middlename' => 'max:255|regex:/^[a-zA-Z\s]+$/',
             'lastname' => 'max:255|regex:/^[a-zA-Z\s]+$/',
             'address' => 'max:255',
             'birthday' => 'date',

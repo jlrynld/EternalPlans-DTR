@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('planned_pto', function (Blueprint $table) {
             $table->id();
             $table->string('code');
-            $table->timestamp('date');
+            $table->date('date');
             $table->unsignedBigInteger('created_by');
             $table->timestamps();
         });

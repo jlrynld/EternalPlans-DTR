@@ -10,10 +10,10 @@
                 Daily Time Record
 
                 {{-- ===== Back Button ===== --}}
-                {{-- <a class="h4" href="{{ route('dashboard') }}" style="float:right;">
+                <a class="h4" href="{{ route('dashboard.index') }}" style="float:right;">
                     <i class="far fa-arrow-alt-circle-left"></i>
-                        <span style="font-family: 'Poppins', serif;"> Back </span>
-                </a> --}}
+                    <span style="font-family: 'Poppins', serif;"> Back </span>
+                </a> 
 
             </h3>
 

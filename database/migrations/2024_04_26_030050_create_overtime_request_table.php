@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('employee_code');
             $table->string('from_time');
             $table->string('to_time');
-            $table->timestamp('date');
+            $table->date('date');
             $table->string('nature_of_work');
             $table->string('remarks')->nullable();
             $table->string('recommended_by_code');
