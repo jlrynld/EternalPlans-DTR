@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class UpdateProfileController extends Controller
 {
-    public function index(Profile $profile)
+    public function index()
     {
         $user = User::select('id', 'firstname', 'email')->where('id', Auth::user()->id)->get();
+        $profile = Profile::where('id', Auth::user()->id)->get();
+
         return view('contents.profile.update-employee')
                     ->with('user', $user)
                     ->with('profile', $user);
