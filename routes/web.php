@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/undertime-checker', [DashboardController::class, 'undertimeRecord'])->name('dashboard.undertimeRecord');
 
     Route::get('/request-overtime', [OvertimeController::class, 'index'])->name('request.index');
-    Route::post('/request-overtime-submit', [OvertimeController::class, 'overtime'])->name('request.overtime');
+    Route::post('request-overtime-submit', [OvertimeController::class, 'store'])->name('overtime.store');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile-sign-up', [ProfileController::class, 'signUp'])->name('profile.update');

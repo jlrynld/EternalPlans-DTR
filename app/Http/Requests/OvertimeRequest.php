@@ -11,7 +11,7 @@ class OvertimeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,15 +21,13 @@ class OvertimeRequest extends FormRequest
      */
     public function rules(): array
     {
-         // Validate form data
-         $validatedData = $request->validate([
-            'dateforot' => 'required|date',
-            'from-time' => 'required',
-            'to-time' => 'required',
-            'nature-work' => 'required',
-        ]);
+
         return [
-            //
+            'date_of_ot' => 'required|date',
+            'from_time' => 'required',
+            'to_time' => 'required',
+            'nature_of_work' => 'required|max:255',
         ];
+
     }
 }
