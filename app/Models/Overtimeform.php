@@ -17,7 +17,7 @@ class Overtimeform extends Model
 
     protected $fillable = [
         'employee_code',
-        'date_of_ot',
+        'date',
         'from_time',
         'to_time',
         'nature_of_work',
@@ -27,7 +27,6 @@ class Overtimeform extends Model
         'recommended_by_remarks',
         'approved_by_code',
         'approved_by_remarks',
-
     ];
 }
 

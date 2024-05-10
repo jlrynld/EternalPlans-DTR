@@ -29,7 +29,7 @@
                                 <div class="row mb-2">
                                     <div class="col-md-6 gap-1">
                                         <label for="dateforot">Date Of Over Time:</label>
-                                        <input class="form-control" type="date" id="date" name="date_of_ot" value="{{ now()->format('Y-m-d') }}">
+                                        <input class="form-control" type="date" id="date" name="date" value="{{ now()->format('Y-m-d') }}">
                                     </div>
                                 </div>
 
