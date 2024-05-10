@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dtr', function (Blueprint $table) {
-            $table->id();
+            $table->string('employee_code')->unique();
             $table->date('date');
             $table->time('time_in');
             $table->time('lunch_out')->nullable();

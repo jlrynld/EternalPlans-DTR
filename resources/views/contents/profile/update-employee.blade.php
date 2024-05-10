@@ -48,11 +48,11 @@
                         {{-- ===== 2nd Column ====== --}}
 
                         <div class="col">
-
+                            
                             <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" name="middlename" id="middlename" placeholder="middlename" onkeypress="return onlyLettersAndSpaces(event)"onpaste="handlePaste(event)"
+                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname" onkeypress="return onlyLettersAndSpaces(event)" onpaste="handlePaste(event)"
                                     onblur="removeExtraSpaces(this)">
-                                    <label for="middlename">Middle name</label>
+                                    <label for="lastname">Last name</label>
                             </div>
                         
                             <div class="input-group mb-3 mt-3">
@@ -76,9 +76,9 @@
                         <div class="col">
 
                             <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname" onkeypress="return onlyLettersAndSpaces(event)" onpaste="handlePaste(event)"
+                                <input type="text" class="form-control" name="middlename" id="middlename" placeholder="middlename" onkeypress="return onlyLettersAndSpaces(event)"onpaste="handlePaste(event)"
                                     onblur="removeExtraSpaces(this)">
-                                    <label for="lastname">Last name</label>
+                                    <label for="middlename">Middle name</label>
                             </div>
 
                             <div class="form-floating mb-3 mt-3">

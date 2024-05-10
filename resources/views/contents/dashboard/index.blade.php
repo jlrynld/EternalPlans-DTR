@@ -10,10 +10,10 @@
                 Daily Time Record
 
                 {{-- ===== Back Button ===== --}}
-                <a class="h4" href="{{ route('dashboard.index') }}" style="float:right;">
+                {{-- <a class="h4" href="{{ route('dashboard.index') }}" style="float:right;">
                     <i class="far fa-arrow-alt-circle-left"></i>
                     <span style="font-family: 'Poppins', serif;"> Back </span>
-                </a> 
+                </a>  --}}
 
             </h3>
 
@@ -61,7 +61,7 @@
                     <div class="input-group m-2" style="width: 94%">
                         <span class="input-group-text">#</span>
                         <div class="form-floating">
-                            <textarea type="email" class="form-control" id="employeeId" style="resize: none;" placeholder = "name@example.com" disabled>{{ auth()->user()->id }}</textarea>
+                            <textarea type="email" class="form-control" id="employeeId" style="resize: none;" placeholder = "name@example.com" disabled>{{ auth()->user()->employee_code }}</textarea>
                             <label for="employeeId">Employee ID</label>
                         </div>
                     </div>

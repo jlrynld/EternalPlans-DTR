@@ -11,6 +11,7 @@ class Dtr extends Model
 
 
     protected $fillable = [
+        'employee_code',
         'time_in',
         'lunch_out',
         'lunch_in',
@@ -18,7 +19,6 @@ class Dtr extends Model
         'date',
         'status',
         'total_hours',
-        'employee_code'
     ];
 
     protected $table = 'dtr';

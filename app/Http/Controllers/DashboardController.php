@@ -14,7 +14,7 @@ class DashboardController extends Controller{
 
 public function index()
     {
-        $user = User::select('id', 'firstname', 'email')->where('id', Auth::user()->id)->get();
+        $user = User::select('employee_code', 'firstname', 'email')->where('employee_code', Auth::user()->employee_code)->get();
         return view('contents.dashboard.index')->with('user', $user);
     }
 
@@ -46,7 +46,7 @@ public function index()
     {
         DB::beginTransaction();
         try {
-            $employee_code = auth()->user()->id;
+            $employee_code = auth()->user()->employee_code;
             $date = now()->format('Y-m-d');
             $current_time = now()->format('H:i:s');
             $status = now()->format('H:i:s') >= '09:00:00' ? 'Half day' : 
@@ -69,8 +69,8 @@ public function index()
                         Dtr::updateOrCreate([
                             'time_in' => now()->format('H:i:s'),                           
                             'status' => $status,
-                            'date' => now()->format('Y-m-d'), 
-                            'employee_code' => auth()->user()->id,
+                            'date' => now()->format('Y-m-d'),
+                            'employee_code' => $employee_code,
                         ]);
                      }
                     break;
@@ -107,7 +107,6 @@ public function index()
                                     ->whereNull('lunch_out')
                                     ->update([
                                     'lunch_out' => now()->format('H:i'),
-                                    'employee_code' => auth()->user()->id,
                                 ]);
                             }                
                         } else {
@@ -143,7 +142,7 @@ public function index()
                                 ->whereNull('lunch_in')
                                 ->update([
                                 'lunch_in' => now()->format('H:i:s'),
-                                'employee_code' => auth()->user()->id,
+                                'employee_code' => auth()->user()->employee_code,
                             ]);
                         }       
                     }
@@ -181,7 +180,7 @@ public function index()
                                         ->whereNull('time_out')
                                         ->update([
                                         'time_out' => now()->format('H:i:s'),
-                                        'employee_code' => auth()->user()->id,
+                                        'employee_code' => auth()->user()->employee_code,
                                         'status' => 'Late - Undertime',
                                         ]);  
                                 } 
@@ -194,7 +193,7 @@ public function index()
                                         ->whereNull('time_out')
                                         ->update([
                                         'time_out' => now()->format('H:i:s'),
-                                        'employee_code' => auth()->user()->id,
+                                        'employee_code' => auth()->user()->employee_code,
                                         'status' => 'Undertime',
                                         ]);  
                                 }
@@ -207,7 +206,7 @@ public function index()
                                     ->whereNull('time_out')
                                     ->update([
                                     'time_out' => now()->format('H:i:s'),
-                                    'employee_code' => auth()->user()->id,
+                                    'employee_code' => auth()->user()->employee_code,
                                     'status' => 'Half day',
                                     ]);  
                             }
@@ -218,7 +217,7 @@ public function index()
                                 ->whereNull('time_out')
                                 ->update([
                                 'time_out' => now()->format('H:i:s'),
-                                'employee_code' => auth()->user()->id,
+                                'employee_code' => auth()->user()->employee_code,
                                 ]);
                             }
                         break;
@@ -238,7 +237,7 @@ public function index()
         DB::beginTransaction();
 
         try {
-            $employee_code = auth()->user()->id;
+            $employee_code = auth()->user()->employee_code;
             $date = now()->format('Y-m-d');
             $current_time = now()->format('H:i:s');
             $status = now()->format('H:i:s') >= '09:00:00' ? 'Half day' : 
@@ -250,7 +249,7 @@ public function index()
                     ->first();
 
             if($current_time < '17:00:00') {
-                $employee_code = auth()->user()->id;
+                $employee_code = auth()->user()->employee_code;
                 $date = now()->format('Y-m-d');
 
                 if($status_checker != 'Half day') 
@@ -261,7 +260,7 @@ public function index()
                     ->whereNull('time_out')
                     ->update([
                         'time_out' => now()->format('H:i:s'),
-                        'employee_code' => auth()->user()->id,
+                        'employee_code' => auth()->user()->employee_code,
                         'status' => $status_checker,
                     ]);
 

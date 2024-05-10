@@ -12,7 +12,7 @@
                 @csrf
                     <div class="row d-flex justify-items-center mx-auto">
 
-                        <span class="fs-6 fst-italic" style="color: #27af59;">*View only, to edit <a class="fw-bold text-decoration-underline" href="{{ route('profile.update-employee') }}">click here</a></span>
+                        <span class="fs-6 fst-italic" style="color: #27af59;">*View only, to edit  <a class="fw-bold text-decoration-underline" href="{{ route('profile.update-employee') }}">click here</a></span>
 
                             <div class="col">
                                 {{-- ===== Forms ===== --}}
@@ -43,13 +43,13 @@
                             {{-- ===== 2nd Column ====== --}}
 
                             <div class="col">
-
+                                
                                 <div class="form-floating mb-3 mt-3">
-                                    <input disabled type="text" class="form-control" name="middlename" id="middlename" placeholder="middlename" value="{{ auth()->user()->middlename }}" onkeypress="return onlyLettersAndSpaces(event)"onpaste="handlePaste(event)"
+                                    <input disabled type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname" value="{{ auth()->user()->lastname }}"onkeypress="return onlyLettersAndSpaces(event)" onpaste="handlePaste(event)"
                                         onblur="removeExtraSpaces(this)">
-                                        <label for="middlename">Middle name</label>
+                                        <label for="lastname">Last name</label>
                                 </div>
-                              
+                           
                                 <div class="input-group mb-3 mt-3">
                                     <span class="input-group-text">#</span>
                                     <div class="form-floating">
@@ -69,11 +69,10 @@
                             {{-- ====== 3rd Column ====== --}}
 
                             <div class="col">
-
                                 <div class="form-floating mb-3 mt-3">
-                                    <input disabled type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname" value="{{ auth()->user()->lastname }}"onkeypress="return onlyLettersAndSpaces(event)" onpaste="handlePaste(event)"
+                                    <input disabled type="text" class="form-control" name="middlename" id="middlename" placeholder="middlename" value="{{ auth()->user()->middlename }}" onkeypress="return onlyLettersAndSpaces(event)"onpaste="handlePaste(event)"
                                         onblur="removeExtraSpaces(this)">
-                                        <label for="lastname">Last name</label>
+                                        <label for="middlename">Middle name</label>
                                 </div>
 
                                 <div class="form-floating mb-3 mt-3">
