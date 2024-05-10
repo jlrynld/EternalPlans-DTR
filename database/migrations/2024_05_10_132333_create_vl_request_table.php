@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pto_request', function (Blueprint $table) {
+        Schema::create('vl_request', function (Blueprint $table) {
             $table->id();
             $table->string('employee_code');
             $table->string('type_code');
-            $table->time('from_time');
-            $table->time('to_time');
+            $table->date('from');
+            $table->date('to');
             $table->date('date');
             $table->string('reason');
             $table->string('supervisor_code');
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pto_request');
+        Schema::dropIfExists('vl_request');
     }
 };

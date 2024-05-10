@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('overtime_request', function (Blueprint $table) {
             $table->id();
             $table->string('employee_code');
-            $table->string('from_time');
-            $table->string('to_time');
+            $table->timestamps('from_time');
+            $table->timestamps('to_time');
             $table->date('date');
             $table->string('nature_of_work');
             $table->string('remarks')->nullable();
