@@ -12,8 +12,11 @@ class ProfileController extends Controller {
 
     public function index()
     {
-        $user = User::select('id', 'firstname', 'email')->where('id', Auth::user()->id)->get();
-        return view('contents.profile.index')->with('user', $user);
+        $user = User::select('id', 'firstname', 'email', 'employee_code')->where('id', Auth::user()->id)->get();
+       
+        return view('contents.profile.index')
+                    ->with('user', $user);
+        
     }
 
 }

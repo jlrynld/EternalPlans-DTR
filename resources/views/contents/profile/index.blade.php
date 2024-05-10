@@ -27,7 +27,7 @@
                                 <div class="input-group mb-3 mt-3">
                                     <span class="input-group-text">#</span>
                                     <div class="form-floating">
-                                        <textarea type="text" class="form-control" id="employeeId" style="resize: none;" placeholder = "name@example.com" disabled>{{ auth()->user()->id }}</textarea>
+                                        <textarea type="text" class="form-control" id="employeeId" style="resize: none;" placeholder = "name@example.com" disabled>{{ auth()->user()->employee_code }}</textarea>
                                         <label for="employeeId">Employee ID</label>
                                     </div>
                                 </div>

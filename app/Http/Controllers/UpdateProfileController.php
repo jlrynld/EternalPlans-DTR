@@ -13,7 +13,7 @@ class UpdateProfileController extends Controller
     public function index()
     {
         $user = User::select('id', 'firstname', 'email')->where('id', Auth::user()->id)->get();
-        $profile = Profile::where('id', Auth::user()->id)->get();
+        $profile = Profile::where('employee_code', Auth::user()->employee_code)->get();
 
         return view('contents.profile.update-employee')
                     ->with('user', $user)

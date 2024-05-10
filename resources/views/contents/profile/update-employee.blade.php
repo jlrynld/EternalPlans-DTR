@@ -24,7 +24,7 @@
                             {{-- ===== 1st column ===== --}}
 
                             <div class="form-floating mb-3 mt-3">
-                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="firstname" value="{{ $profile->firstname }}" onkeypress="return onlyLettersAndSpaces(event)"onpaste="handlePaste(event)"
+                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="firstname" value=" " onkeypress="return onlyLettersAndSpaces(event)"onpaste="handlePaste(event)"
                                     onblur="removeExtraSpaces(this)">
                                     <label for="firstname">First name</label>
                             </div>
