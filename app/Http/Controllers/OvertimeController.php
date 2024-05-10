@@ -25,7 +25,7 @@ class OvertimeController extends Controller
         try {
             Overtimeform::create([
                 'employee_code'=> Auth::user()->id,
-                'date_of_ot' => $request->date_of_ot,
+                'date' => $request->date,
                 'from_time' => $request->from_time,
                 'to_time' => $request->to_time,
                 'nature_of_work' => $request->nature_of_work,

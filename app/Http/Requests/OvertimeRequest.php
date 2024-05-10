@@ -23,7 +23,7 @@ class OvertimeRequest extends FormRequest
     {
 
         return [
-            'date_of_ot' => 'required|date',
+            'date' => 'required|date',
             'from_time' => 'required',
             'to_time' => 'required',
             'nature_of_work' => 'required|max:255',

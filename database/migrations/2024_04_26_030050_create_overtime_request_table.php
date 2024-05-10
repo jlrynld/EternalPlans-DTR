@@ -14,17 +14,17 @@ return new class extends Migration
         Schema::create('overtime_request', function (Blueprint $table) {
             $table->id();
             $table->string('employee_code');
-            $table->timestamp('from_time')->nullable();
-            $table->timestamp('to_time')->nullable();
+            $table->time('from_time');
+            $table->time('to_time');
             $table->date('date');
             $table->string('nature_of_work');
             $table->string('remarks')->nullable();
-            $table->string('recommended_by_code');
-            $table->string('recommended_by_remarks');
-            $table->string('approved_by_code');
+            $table->string('recommended_by_code')->nullable();
+            $table->string('recommended_by_remarks')->nullable();
+            $table->string('approved_by_code')->nullable();
             $table->string('approved_by_remarks')->nullable();
-            $table->boolean('status');
-
+            $table->string('status');
+            $table->timestamps();
 
         });
     }
