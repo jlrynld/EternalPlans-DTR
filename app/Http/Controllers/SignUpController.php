@@ -32,6 +32,7 @@ class SignUpController extends Controller {
                     'type' => $request->type,
                     'firstname' => $request->firstname,
                     'lastname' => $request->lastname,
+                    'middlename' => $request->middlename,
                     'email' => $request->email,
                     'password' => bcrypt($request->password),
                 ]);
