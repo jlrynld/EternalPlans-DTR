@@ -45,6 +45,12 @@
                 </div>
 
                 <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="middlename" id="middlename" placeholder="middlename" value="{{ old('middlename') }}"onkeypress="return onlyLettersAndSpaces(event)" onpaste="handlePaste(event)"
+                    onblur="removeExtraSpaces(this)">
+                        <label for="lastname">Middle name</label>
+                </div>
+
+                <div class="form-floating mb-3">
                     <input type="email" class="form-control" name="email" id="email" placeholder="email" value="{{ old('email') }}"onpaste="handlePaste(event)"
                     onblur="removeExtraSpaces(this)">
                         <label for="email">Email</label>

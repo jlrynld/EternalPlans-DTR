@@ -14,7 +14,7 @@
 <div class="align-items-center">
         <nav class="p-4 bg-dark">
             <div class="text-center">
-                <a href="{{ asset('sign-in-index') }}">
+                <a href="{{ route('sign-in.index') }}">
                     <img class="mx-auto logo" src="css/logo/ETERNALLOGO.png" alt="index">
                          </a>
                             <h1 class="mx-auto header text-white">Eternal Plans, Inc. DTR </h1>

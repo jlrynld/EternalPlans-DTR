@@ -28,6 +28,7 @@ class SignUpRequest extends FormRequest
             'type' => 'required|in:Employee,Manager',
             'firstname' => 'required|max:255|regex:/^[a-zA-Z\s]+$/',
             'lastname' => 'required|max:255|regex:/^[a-zA-Z\s]+$/',
+            'middlename' => 'max:255|regex:/^[a-zA-Z\s]+$/',
             'email' => 'required|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
             'password_confirmation' => 'required|min:8|max:255',
